@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="resources/a_frame_script.js"></script>
+    <script defer src="resources/interior_main_script.js" type="text/javascript"></script>
+    <title>Interior</title>
+</head>
+
+<body>
+    <a-scene escena id="myScene" sonido_ambiente fog="none" cursor="rayOrigin: mouse">
+        <!-- Assets manager -->
+        <a-assets>
+            <a-asset-item id="player" src="resources/Models/Avatar_animado.glb"></a-asset-item>
+            <a-asset-item id="habitacion" src="resources/Models/Modelos_interior/Habitacion.glb"></a-asset-item>
+            <a-asset-item id="luces" src="resources/Models/Modelos_interior/Lamparas.glb"></a-asset-item>
+            <a-asset-item id="mesa_01" src="resources/Models/Modelos_interior/Mesa_01.glb"></a-asset-item>
+            <a-asset-item id="mesa_02" src="resources/Models/Modelos_interior/Mesa_02.glb"></a-asset-item>
+            <a-asset-item id="mesa_03" src="resources/Models/Modelos_interior/Mesa_03.glb"></a-asset-item>
+            <a-asset-item id="silla_01" src="resources/Models/Modelos_interior/Silla_01.glb"></a-asset-item>
+            <a-asset-item id="silla_02" src="resources/Models/Modelos_interior/Silla_02.glb"></a-asset-item>
+            <a-asset-item id="computador_01" src="resources/Models/Modelos_interior/PC_01.glb"></a-asset-item>
+            <a-asset-item id="computador_02" src="resources/Models/Modelos_interior/PC_02.glb"></a-asset-item>
+            <a-asset-item id="caja_arroz" src="resources/Models/Modelos_interior/Caja_arroz.glb"></a-asset-item>
+            <a-asset-item id="caja_chocolate_01" src="resources/Models/Modelos_interior/Caja_chocolate_01.glb">
+            </a-asset-item>
+            <a-asset-item id="caja_chocolate_02" src="resources/Models/Modelos_interior/Caja_chocolate_02.glb">
+            </a-asset-item>
+            <a-asset-item id="caja_refresco" src="resources/Models/Modelos_interior/Caja_refresco.glb"></a-asset-item>
+            <a-asset-item id="metro" src="resources/Models/Modelos_interior/Metro.glb"></a-asset-item>
+            <a-asset-item id="calibre" src="resources/Models/Modelos_interior/Calibre.glb"></a-asset-item>
+            <a-asset-item id="balanza" src="resources/Models/Modelos_interior/Balanza.glb"></a-asset-item>
+            <a-asset-item id="poster" src="resources/Models/Modelos_interior/Poster.glb"></a-asset-item>
+            <a-asset-item id="transportadora" src="resources/Models/Modelos_interior/Transportadora.glb"></a-asset-item>
+            <!-- <a-asset-item id="luces" src="resources/Modelos/Escena_interior/Luces.glb"></a-asset-item>
+            <a-asset-item id="mesa_01" src="resources/Modelos/Escena_interior/Mesa_01.glb"></a-asset-item>
+            <a-asset-item id="mesa_02" src="resources/Modelos/Escena_interior/Mesa_02.glb"></a-asset-item>
+            <a-asset-item id="mesa_03" src="resources/Modelos/Escena_interior/Mesa_03.glb"></a-asset-item>
+            <a-asset-item id="poster" src="resources/Modelos/Escena_interior/Poster.glb"></a-asset-item>
+            <a-asset-item id="transportadora" src="resources/Modelos/Escena_interior/Transportadora.glb"></a-asset-item> -->
+        </a-assets>
+
+        <!-- Forma número 2 para el personaje -->
+        <a-entity id="character" gltf-model="#player" position="-5 0 -6" scale="0.5 0.5 0.5"
+            player_controls="turnEnabled: true;" animation-mixer="clip: Idle; loop: repeat">
+            <a-entity id="rig" position="0 9 -10" rotation="0 180 0">
+                <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;"></a-entity>
+            </a-entity>
+        </a-entity>
+
+        <!-- Elementos de la oficina -->
+        <a-entity gltf-model="#habitacion" habitacion scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#luces" luces scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#mesa_01" mesa_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#mesa_02" mesa_02 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#mesa_03" mesa_03 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#silla_01" silla_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#silla_02" silla_02 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#computador_01" computador_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#computador_02" computador_02 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#caja_arroz" caja_arroz scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#caja_chocolate_01" caja_chocolate_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#caja_chocolate_02" caja_chocolate_02 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#caja_refresco" caja_refresco scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#metro" metro scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#calibre" calibre scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#balanza" scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#poster" poster scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#transportadora" transportadora scale="0.5 0.5 0.5"></a-entity>
+
+    </a-scene>
+
+    <!-- Normal HTML -->
+    <div class="o-header">
+        <h1>Aplicación</h1>
+        <div class="o-optionsBtns">
+            <div id="infoButton" class="o-crcButton" onclick="reveal()" >
+                <span id="infoIcon" class="material-icons o-closed" style="font-size:24px;">help_outline</span>
+            </div>
+            <div class="o-sound" onmouseover="volumeControl()" onmouseout="quitVolumeControl()">
+                <div id="soundButton" class="o-crcButton" onclick="updateSound()" >
+                    <span id="soundIcon" class="material-icons o-closed" style="font-size:24px;">volume_off</span>
+                </div>
+                <input id="volumeSlider" type="range" min="0" max="100" value="50" class="o-volumeSlider">
+            </div>
+        </div>
+    </div>
+    <audio id="factorySound" loop>
+        <source src="resources/Audio_files/Habitacion.ogg" type="audio/ogg">
+    </audio>
+
+        <!-- Controls information -->
+    <div id="controlsContainer" class="o-controlsInfo">
+        <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
+        <div class="o-keyOptions">
+            <div class="o-keys">
+                <div class="o-key">A</div>
+                <div class="o-key">W</div>
+                <div class="o-key">D</div>
+            </div>
+            <div class="o-keys">
+                <div class="o-key">&#129080</div>
+                <div class="o-key">&#129081</div>
+                <div class="o-key">&#129082</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
