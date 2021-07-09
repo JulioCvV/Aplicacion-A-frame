@@ -82,13 +82,14 @@
             </a-entity>
         </a-entity> -->
 
+        <!-- Funciona pero sin el navmesh -->
         <!-- <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" player_controls="turnEnabled: true;" animation-mixer="clip: Idle; loop: repeat">
             <a-entity id="rig" position="0 9 -25" rotation="0 180 0">
                 <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" ></a-entity>
             </a-entity>
         </a-entity> -->
 
-        <!-- Forma número 2 para el personaje -->
+        <!-- Funciona el navmesh pero sin animaciones -->
         <!-- <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" movement-controls="controls:keyboard;constrainToNavMesh: true; speed: -0.3" animation-mixer="clip: Idle; loop: repeat">
             <a-entity id="rig" position="0 9 -25" rotation="0 180 0">
                 <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" ></a-entity>
@@ -202,7 +203,15 @@
         <div id="info-03" class="o-information" style="display: none;">
             <h3>Ingeniero jefe dice:</h3>
             <p>Para un mejor entendimiento del proceso, visualiza el video a continuación</p>
-            <button class="o-principal" onclick="openVideo()">Ver video</button>
+            <div class="o-desitionButtons">
+                <button class="o-secundario" onclick="openVideo()">Ver video</button>
+                <button id="nextButton" class="o-principal" onclick="nextText()" disabled>Continuar</button>
+            </div>
+        </div>
+        <div id="info-04" class="o-information" style="display: none;">
+            <h3>Ingeniero jefe dice:</h3>
+            <p>Ahora dirigete a tu estación de trabajo haciendo click sobre el portal a tu derecha</p>
+            <button class="o-principal" onclick="endText()">Hasta luego</button>
         </div>
     </div>
     <div id="videoModal" class="o-modal">

@@ -1,4 +1,4 @@
-let showDisplay = [1, 0, 0];
+let showDisplay = [1, 0, 0, 0];
 let modal = document.getElementById("videoModal");
 let video = document.getElementById("video");
 let close = document.getElementById("closeButton");
@@ -11,10 +11,11 @@ let isPlaying = false;
 let volumeVal = null;
 let defaultValue = false;
 let controlsInfo = null;
-let escena = document.querySelector('a-scene') 
+let escena = document.querySelector('a-scene')
+let next = document.getElementById('nextButton') 
 
 function nextText() {
-    let infoCards = ['info-01', 'info-02', 'info-03'];
+    let infoCards = ['info-01', 'info-02', 'info-03','info-04'];
     let elements = [];
     for (let i = 0; i < infoCards.length; i++) {
         elements.push(document.getElementById(infoCards[i]));
@@ -45,13 +46,18 @@ function openVideo() {
     // modal = document.getElementById("videoModal");
     // information = document.getElementById("container");
     modal.style.display = "block";
-    information.style.display = "none"
+    // information.style.display = "none"
     if(isFirstTimePlaying==false){
         video.removeAttribute('autoplay', '')
         video.setAttribute('controls','')
     }else{
         video.setAttribute('autoplay','')
     }
+}
+
+function endText() {
+    information.style.display = "none"
+    nextText()
 }
 
 video.onended = function (e) {
@@ -63,7 +69,8 @@ function closeVideo() {
     modal.style.display = "none";
     video.pause();
     video.currentTime = 0;
-    let fisrtClick = false
+    let fisrtClick = false;
+    next.removeAttribute('disabled');
     if(isFirstTimePlaying && fisrtClick==false){
         createPortal()
         fisrtClick = true

@@ -237,6 +237,10 @@ div h3{
 .o-information p{
   font-family: 'Raleway', sans-serif;
 }
+.o-desitionButtons{
+  display: flex;
+  justify-content: center;
+}
 .o-principal{
   margin: 1rem 0 0 0;
   width: 10rem;
@@ -255,6 +259,30 @@ div h3{
 .o-principal:hover{
   background-color: #E87140;
   transform: scale(1.1);
+}
+.o-secundario{
+  margin: 1rem 0.75rem 0 0;
+  width: 10rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  font-size: 1.125rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 4rem;
+  border: 2px solid #E87140;
+  color: #E87140;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  align-self: center;
+  transition: 100ms;
+}
+.o-secundario:hover{
+  background-color: #E87140;
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+.o-principal:disabled{
+  background:#c4c4c4;
+  cursor: no-drop;
 }
 .o-modal{
   display: none;
