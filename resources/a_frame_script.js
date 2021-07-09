@@ -214,6 +214,7 @@ AFRAME.registerComponent('player_controls', {
 	}
 });
 
+
 AFRAME.registerComponent('character', {
     init: function(){
         let el = this.el;

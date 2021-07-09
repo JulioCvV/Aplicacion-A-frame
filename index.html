@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
@@ -36,6 +36,8 @@
             <a-asset-item id="tanque_02" src="resources/Models/Tanque_02.glb"></a-asset-item>
             <a-asset-item id="tanque_03" src="resources/Models/Tanque_03.glb"></a-asset-item>
             <a-asset-item id="camion" src="resources/Models/Camion.glb"></a-asset-item>
+
+            <a-asset-item id="navigation_mesh" src="resources/Models/NavMesh_ext.glb"></a-asset-item>
 
             <img id="entrada" src="resources/Textures/Room.jpg">
 
@@ -80,11 +82,22 @@
             </a-entity>
         </a-entity> -->
 
-        <!-- Forma número 2 para el personaje -->
-        <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" player_controls="turnEnabled: true;" animation-mixer="clip: Idle; loop: repeat">
+        <!-- <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" player_controls="turnEnabled: true;" animation-mixer="clip: Idle; loop: repeat">
             <a-entity id="rig" position="0 9 -25" rotation="0 180 0">
                 <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" ></a-entity>
             </a-entity>
+        </a-entity> -->
+
+        <!-- Forma número 2 para el personaje -->
+        <!-- <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" movement-controls="controls:keyboard;constrainToNavMesh: true; speed: -0.3" animation-mixer="clip: Idle; loop: repeat">
+            <a-entity id="rig" position="0 9 -25" rotation="0 180 0">
+                <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" ></a-entity>
+            </a-entity>
+        </a-entity> -->
+
+        <a-entity id="rig" position="0 0 -65" rotation="0 180 0" movement-controls="constrainToNavMesh: true; speed: 0.3">
+            <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" position="0 4 0" look-controls></a-entity>
+                    <a-entity id="character" character gltf-model="#player" rotation="0 180 0" position="0 0 1.5" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
         </a-entity>
 
         <!-- Elementos del entorno -->
@@ -92,6 +105,7 @@
         <!-- <a-plane id="talkSign" position="0 5.5 -15" width="1" height="1" color="#FFFFFF" material="side: double" event-set__show="_event: click; color:#212327"></a-plane> -->
         <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -15" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane>
         <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
         <a-entity gltf-model="#fabrica" fabrica scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#extras" extras scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#letrero_01" letrero_01 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
@@ -119,7 +133,7 @@
             animation__park="property: position; dur: 4000;from: -60 0 75; to: -37.5 0 75;loop: 1; easing: easeOutQuad; autoplay: false">
         </a-entity>
 
-        <a-entity id="camion_03" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 91"></a-entity>
+        <a-entity id="camion_03" static-body="shape: box; mass: 2" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 91"></a-entity>
         <a-entity id="camion_04" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 83"></a-entity>
 
         <!-- <a-link position="2 2 -12" href="inside.html" title="Entrada" image="#entrada" geometry="primitive: plane"></a-link> -->
