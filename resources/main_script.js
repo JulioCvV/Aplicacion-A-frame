@@ -79,7 +79,7 @@ function closeVideo() {
 }
 
 window.onclick = function (e) {
-    if (e.target == modal) {
+    if (e.target == modal && isFirstTimePlaying == false) {
         modal.style.display = "none";
         video.pause();
         video.currentTime = 0;

@@ -21,8 +21,10 @@
 </head>
 <body>
     <a-scene escena sonido_ambiente controles-informacion background="color: #FFFFFF" light="defaultLightsEnabled: false" fog="none" cursor="rayOrigin: mouse" animation-timeline__A="timeline:#trucksTimeline; loop:true">
+        
         <!-- Assets manager -->
         <a-assets>
+            <!-- Modelos -->
             <a-asset-item id="player" src="resources/Models/Avatar_animado.glb"></a-asset-item>
             <a-asset-item id="npc" src="resources/Models/NPC.glb"></a-asset-item>
             <a-asset-item id="entorno" src="resources/Models/Entorno.glb"></a-asset-item>
@@ -37,15 +39,19 @@
             <a-asset-item id="tanque_03" src="resources/Models/Tanque_03.glb"></a-asset-item>
             <a-asset-item id="camion" src="resources/Models/Camion.glb"></a-asset-item>
 
+            <!-- Navigation mesh -->
             <a-asset-item id="navigation_mesh" src="resources/Models/NavMesh_ext.glb"></a-asset-item>
 
+            <!-- Imagen del portal -->
             <img id="entrada" src="resources/Textures/Room.jpg">
 
+            <!-- Audio -->
             <audio id="andando" src="resources/Audio_files/Motor_de_camion.ogg" preload="auto"></audio>
             <audio id="parqueo" src="resources/Audio_files/Parqueo.ogg" preload="auto"></audio>
             <audio id="encendido" src="resources/Audio_files/Encendido_de_camion.ogg" preload="auto"></audio>
             <audio id="apagado" src="resources/Audio_files/Motor_apagado.ogg" preload="auto"></audio>
 
+            <!-- Animaciones de los camiones -->
             <a-timeline id="trucksTimeline">
 
                 <a-timeline-group>
@@ -96,17 +102,16 @@
             </a-entity>
         </a-entity> -->
 
+        <!-- Usuario -->
         <a-entity id="rig" position="0 0 -65" rotation="0 180 0" movement-controls="constrainToNavMesh: true; speed: 0.3">
-            <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" position="0 4 0" look-controls></a-entity>
-                    <a-entity id="character" character gltf-model="#player" rotation="0 180 0" position="0 0 1.5" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
+            <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" position="0 4.3 0" look-controls></a-entity>
         </a-entity>
 
         <!-- Elementos del entorno -->
-        <a-entity id="boss" gltf-model="#npc" character position="0 0 -15" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity>
+        <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity>
         <!-- <a-plane id="talkSign" position="0 5.5 -15" width="1" height="1" color="#FFFFFF" material="side: double" event-set__show="_event: click; color:#212327"></a-plane> -->
-        <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -15" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane>
+        <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane>
         <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
         <a-entity gltf-model="#fabrica" fabrica scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#extras" extras scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#letrero_01" letrero_01 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
@@ -137,12 +142,15 @@
         <a-entity id="camion_03" static-body="shape: box; mass: 2" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 91"></a-entity>
         <a-entity id="camion_04" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 83"></a-entity>
 
+        <!-- Navigation mesh -->
+        <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
+
         <!-- <a-link position="2 2 -12" href="inside.html" title="Entrada" image="#entrada" geometry="primitive: plane"></a-link> -->
         <!-- <a-entity  link="href: inside.html" geometry="primitive: plane; height: 6.5; width: 8.5" material="backgroundColor: #1a1a1a; blending: normal; borderEnabled: 0; pano: #entrada; shader: portal; side:double" position="-13.5 3.3 -6.5" 
             animation="property: scale; from:1 0 1; to: 1 1 1; easing: linear; dur: 1500; loop: 1; autoplay: true; delay: 10000">
         </a-entity> -->
 
-        <!-- Crea el ambiente del entorno virtual -->
+        <!-- Crea el cielo del entorno virtual -->
         <a-entity 
             id="ambiente" 
             environment="preset:default; ground:none; ">
@@ -151,7 +159,7 @@
 
     <!-- Normal HTML -->
 
-    <!-- Header -->
+    <!-- Cabecera -->
     <div class="o-header">
         <h1>Aplicación</h1>
         <div class="o-optionsBtns">
@@ -171,7 +179,7 @@
         <source src="resources/Audio_files/Ambiente.ogg" type="audio/ogg">
     </audio>
 
-    <!-- Controls information -->
+    <!-- Información de los controles -->
     <div id="controlsContainer" class="o-controlsInfo">
         <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
         <div class="o-keyOptions">
@@ -188,7 +196,7 @@
         </div>
     </div>
 
-    <!-- Laboratory information -->
+    <!-- Información del laboratorio -->
     <div id="container" class="o-container">
         <div id="info-01" class="o-information">
             <h3>Ingeniero jefe dice:</h3>
