@@ -808,6 +808,31 @@ AFRAME.registerComponent('transportadora', {
     }
 });
 
+AFRAME.registerComponent('tasksign', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const textureLoader = new THREE.TextureLoader();
+            const signTexture = textureLoader.load( "resources/Textures/JPG/Task_icon.png");
+            const signAlphaTexture = textureLoader.load('resources/Textures/JPG/Task_icon_alpha.png')
+            signTexture.encoding = THREE.sRGBEncoding
+            const signMaterial = new THREE.MeshBasicMaterial()
+            signMaterial.map = signTexture
+            signMaterial.alphaMap = signAlphaTexture
+            signMaterial.transparent = true
+            signMaterial.side = THREE.DoubleSide
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  signMaterial
+                }
+            });
+            //console.log(el.components.animation__drive.initialized)
+        });
+    }
+});
+
 function show(){
     let information = document.getElementById("container");
     information.style.display = "flex"
