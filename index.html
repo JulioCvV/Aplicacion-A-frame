@@ -116,7 +116,7 @@
         <!-- <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity> -->
         <a-entity id="boss" gltf-model="#player" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
         <!-- <a-plane id="talkSign" position="0 5.5 -15" width="1" height="1" color="#FFFFFF" material="side: double" event-set__show="_event: click; color:#212327"></a-plane> -->
-        <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane>
+        <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class=".raycasteable" ></a-plane>
         <!-- <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity> -->
         <a-entity gltf-model="#terreno" terreno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#arboles" arboles scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
@@ -192,17 +192,25 @@
 
     <!-- Información de los controles -->
     <div id="controlsContainer" class="o-controlsInfo">
-        <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
-        <div class="o-keyOptions">
-            <div class="o-keys">
-                <div class="o-key">A</div>
-                <div class="o-key">W</div>
-                <div class="o-key">D</div>
+        <div class="o-keysInfo">
+            <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
+            <div class="o-keyOptions">
+                <div class="o-keys">
+                    <div class="o-key">A</div>
+                    <div class="o-key">W</div>
+                    <div class="o-key">D</div>
+                </div>
+                <div class="o-keys">
+                    <div class="o-key">&#129080</div>
+                    <div class="o-key">&#129081</div>
+                    <div class="o-key">&#129082</div>
+                </div>
             </div>
-            <div class="o-keys">
-                <div class="o-key">&#129080</div>
-                <div class="o-key">&#129081</div>
-                <div class="o-key">&#129082</div>
+        </div>
+        <div class="o-mouseInfo">
+            <p>Usa tu mouse o touchpad para rotar la vista</p>
+            <div class="o-mouseMove">
+                <span id="mouseIcon" class="material-icons o-mouseIcon" style="font-size:36px;">touch_app</span>
             </div>
         </div>
     </div>
