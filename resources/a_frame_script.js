@@ -554,12 +554,16 @@ AFRAME.registerComponent('sonido_camion', {
 });
 
 AFRAME.registerComponent('talksign', {
+    // schema: {
+    //     icon: {default: 'resources/Textures/Chat_icon.png'}
+    // },
+
     init: function(){
         let el = this.el;
         el.addEventListener("loaded", e =>{
             let tree3D = el.getObject3D('mesh');
             const textureLoader = new THREE.TextureLoader();
-            const signTexture = textureLoader.load( "resources/Textures/Chat_icon.png");
+            const signTexture = textureLoader.load('resources/Textures/Chat_icon.png');
             const signAlphaTexture = textureLoader.load('resources/Textures/Chat_icon_alpha.png')
             signTexture.encoding = THREE.sRGBEncoding
             const signMaterial = new THREE.MeshBasicMaterial()
@@ -575,6 +579,12 @@ AFRAME.registerComponent('talksign', {
             });
             //console.log(el.components.animation__drive.initialized)
         });
+        el.addEventListener("mouseenter", function(){
+            el.setAttribute('scale',{x: 1.1, y: 1.1, z: 1.1})
+        })
+        el.addEventListener("mouseleave", function(){
+            el.setAttribute('scale',{x: 1, y: 1, z: 1})
+        })
     }
 });
 
@@ -925,6 +935,12 @@ AFRAME.registerComponent('tasksign', {
             });
             //console.log(el.components.animation__drive.initialized)
         });
+        el.addEventListener("mouseenter", function(){
+            el.setAttribute('scale',{x: 1.1, y: 1.1, z: 1.1})
+        })
+        el.addEventListener("mouseleave", function(){
+            el.setAttribute('scale',{x: 1, y: 1, z: 1})
+        })
     }
 });
 
