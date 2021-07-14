@@ -27,6 +27,11 @@
             <!-- Modelos -->
             <a-asset-item id="player" src="resources/Models/Avatar_animado.glb"></a-asset-item>
             <a-asset-item id="npc" src="resources/Models/NPC.glb"></a-asset-item>
+            <a-asset-item id="terreno" src="resources/Models/Terreno.glb"></a-asset-item>
+            <a-asset-item id="arboles" src="resources/Models/Arboles.glb"></a-asset-item>
+            <a-asset-item id="lamparas" src="resources/Models/Lamparas.glb"></a-asset-item>
+            <a-asset-item id="autos_01" src="resources/Models/Autos_Fila_A.glb"></a-asset-item>
+            <a-asset-item id="autos_02" src="resources/Models/Autos_Fila_B.glb"></a-asset-item>
             <a-asset-item id="entorno" src="resources/Models/Entorno.glb"></a-asset-item>
             <a-asset-item id="fabrica" src="resources/Models/Fabrica.glb"></a-asset-item>
             <a-asset-item id="extras" src="resources/Models/Extras.glb"></a-asset-item>
@@ -108,39 +113,45 @@
         </a-entity>
 
         <!-- Elementos del entorno -->
-        <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity>
+        <!-- <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity> -->
+        <a-entity id="boss" gltf-model="#player" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
         <!-- <a-plane id="talkSign" position="0 5.5 -15" width="1" height="1" color="#FFFFFF" material="side: double" event-set__show="_event: click; color:#212327"></a-plane> -->
         <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane>
-        <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <!-- <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity> -->
+        <a-entity gltf-model="#terreno" terreno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity gltf-model="#arboles" arboles scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity gltf-model="#lamparas" lamparas scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity gltf-model="#autos_01" autos_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#autos_02" autos_02 scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#fabrica" fabrica scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#extras" extras scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#letrero_01" letrero_01 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity gltf-model="#letrero_02" letrero_02 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#torre" torre scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#luces_torre" luces_torre scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#tanque_01" tanque_01 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#tanque_02" tanque_02 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#tanque_03" tanque_03 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity gltf-model="#torre" torre scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity gltf-model="#luces_torre" luces_torre scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity gltf-model="#tanque_01" tanque_01 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity gltf-model="#tanque_02" tanque_02 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity gltf-model="#tanque_03" tanque_03 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
 
         <!-- Camiones -->
-        <a-entity id="camion_01" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 67" 
+        <a-entity id="camion_01" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 67" 
             sound__start="src: #encendido; loop: true; autoplay: false;refDistance: 5; volume: 1"
             sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
-            animation__depart="property: position; dur: 4000;from: -37.5 0 67; to: -50 0 67;loop: 1; autoplay: false" 
+            animation__depart="property: position; dur: 4000;from: -37.5 -0.482 67; to: -50 -0.482 67;loop: 1; autoplay: false" 
             animation__turn="property: rotation; to: 0 -90 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
-            animation__go="property: position; dur: 10000;from: -50 0 67; to: -50 0 -85;easing: linear;loop: true; autoplay: false">
+            animation__go="property: position; dur: 10000;from: -50 -0.482 67; to: -50 -0.482 -85;easing: linear;loop: true; autoplay: false">
         </a-entity>
 
-        <a-entity id="camion_02" gltf-model="#camion" camion sonido_camion scale="0.5 0.5 0.5" position="-50 0 -90" rotation="0 90 0" 
+        <a-entity id="camion_02" gltf-model="#camion" camion sonido_camion scale="0.5 0.5 0.5" position="-50 -0.482 -90" rotation="0 90 0" 
             sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
             sound__park="src: #parqueo; loop: true; refDistance: 5; volume: 1"
-            animation__drive="property: position; dur: 10000;from: -60 0 -85; to: -60 0 75;easing: linear;loop: 1; autoplay: false"
+            animation__drive="property: position; dur: 10000;from: -60 -0.482 -85; to: -60 -0.482 75;easing: linear;loop: 1; autoplay: false"
             animation__turning="property: rotation;from: 0 90 0; to: 0 0 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
-            animation__park="property: position; dur: 4000;from: -60 0 75; to: -37.5 0 75;loop: 1; easing: easeOutQuad; autoplay: false">
+            animation__park="property: position; dur: 4000;from: -60 -0.482 75; to: -37.5 -0.482 75;loop: 1; easing: easeOutQuad; autoplay: false">
         </a-entity>
 
-        <a-entity id="camion_03" static-body="shape: box; mass: 2" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 91"></a-entity>
-        <a-entity id="camion_04" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 0 83"></a-entity>
+        <a-entity id="camion_03" static-body="shape: box; mass: 2" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 91"></a-entity>
+        <a-entity id="camion_04" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 83"></a-entity>
 
         <!-- Navigation mesh -->
         <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>

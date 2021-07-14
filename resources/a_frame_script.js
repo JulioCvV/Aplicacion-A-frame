@@ -248,6 +248,101 @@ AFRAME.registerComponent('entorno', {
     }
 });
 
+AFRAME.registerComponent('terreno', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/Terreno_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('arboles', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/Arboles_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('lamparas', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/Lamparas_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('autos_01', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/Autos_Fila_A_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('autos_02', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/Autos_Fila_B_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material =  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
 AFRAME.registerComponent('fabrica', {
     init: function(){
         let el = this.el;
