@@ -39,6 +39,19 @@
             <a-asset-item id="caja_chocolate_01" src="resources/Models/Modelos_interior/Caja_chocolate_01.glb"></a-asset-item>
             <a-asset-item id="caja_chocolate_02" src="resources/Models/Modelos_interior/Caja_chocolate_02.glb"></a-asset-item>
             <a-asset-item id="caja_refresco" src="resources/Models/Modelos_interior/Caja_refresco.glb"></a-asset-item>
+            <a-asset-item id="barra_chocolate_01" src="resources/Models/Modelos_interior/Barra_01.glb"></a-asset-item>
+            <a-asset-item id="barra_chocolate_02" src="resources/Models/Modelos_interior/Barra_02.glb"></a-asset-item>
+            <a-asset-item id="barra_chocolate_03" src="resources/Models/Modelos_interior/Barra_03.glb"></a-asset-item>
+            <a-asset-item id="barra_chocolate_04" src="resources/Models/Modelos_interior/Barra_04.glb"></a-asset-item>
+            <a-asset-item id="pitillo_01" src="resources/Models/Modelos_interior/Pitillo_01.glb"></a-asset-item>
+            <a-asset-item id="pitillo_02" src="resources/Models/Modelos_interior/Pitillo_02.glb"></a-asset-item>
+            <a-asset-item id="pitillo_03" src="resources/Models/Modelos_interior/Pitillo_03.glb"></a-asset-item>
+            <a-asset-item id="pitillo_04" src="resources/Models/Modelos_interior/Pitillo_04.glb"></a-asset-item>
+            <a-asset-item id="pitillo_05" src="resources/Models/Modelos_interior/Pitillo_05.glb"></a-asset-item>
+            <a-asset-item id="pitillo_06" src="resources/Models/Modelos_interior/Pitillo_06.glb"></a-asset-item>
+            <a-asset-item id="pitillo_07" src="resources/Models/Modelos_interior/Pitillo_07.glb"></a-asset-item>
+            <a-asset-item id="pitillo_08" src="resources/Models/Modelos_interior/Pitillo_08.glb"></a-asset-item>
+            <a-asset-item id="pitillo_09" src="resources/Models/Modelos_interior/Pitillo_09.glb"></a-asset-item>
             <a-asset-item id="metro" src="resources/Models/Modelos_interior/Metro.glb"></a-asset-item>
             <a-asset-item id="calibre" src="resources/Models/Modelos_interior/Calibre.glb"></a-asset-item>
             <a-asset-item id="balanza" src="resources/Models/Modelos_interior/Balanza.glb"></a-asset-item>
@@ -84,6 +97,19 @@
         <a-entity gltf-model="#caja_chocolate_01" caja_chocolate_01 scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#caja_chocolate_02" caja_chocolate_02 scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#caja_refresco" caja_refresco scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#barra_chocolate_01" barra_chocolate_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#barra_chocolate_02" barra_chocolate_02 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#barra_chocolate_03" barra_chocolate_03 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#barra_chocolate_04" barra_chocolate_04 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_01" pitillo_01 scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_02" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_03" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_04" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_05" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_06" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_07" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_08" pitillo scale="0.5 0.5 0.5"></a-entity>
+        <a-entity gltf-model="#pitillo_09" pitillo scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#metro" metro scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#calibre" calibre scale="0.5 0.5 0.5"></a-entity>
         <a-entity gltf-model="#balanza" scale="0.5 0.5 0.5"></a-entity>
@@ -120,17 +146,25 @@
 
     <!-- Información de los controles -->
     <div id="controlsContainer" class="o-controlsInfo">
-        <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
-        <div class="o-keyOptions">
-            <div class="o-keys">
-                <div class="o-key">A</div>
-                <div class="o-key">W</div>
-                <div class="o-key">D</div>
+        <div class="o-keysInfo">
+            <p>Usa alguna de las siguientes combinaciones de teclas para moverte por el entorno</p>
+            <div class="o-keyOptions">
+                <div class="o-keys">
+                    <div class="o-key">A</div>
+                    <div class="o-key">W</div>
+                    <div class="o-key">D</div>
+                </div>
+                <div class="o-keys">
+                    <div class="o-key">&#129080</div>
+                    <div class="o-key">&#129081</div>
+                    <div class="o-key">&#129082</div>
+                </div>
             </div>
-            <div class="o-keys">
-                <div class="o-key">&#129080</div>
-                <div class="o-key">&#129081</div>
-                <div class="o-key">&#129082</div>
+        </div>
+        <div class="o-mouseInfo">
+            <p>Usa tu mouse o touchpad para rotar la vista</p>
+            <div class="o-mouseMove">
+                <span id="mouseIcon" class="material-icons o-mouseIcon" style="font-size:36px;">touch_app</span>
             </div>
         </div>
     </div>

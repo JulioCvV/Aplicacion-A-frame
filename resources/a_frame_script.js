@@ -214,7 +214,6 @@ AFRAME.registerComponent('player_controls', {
 	}
 });
 
-
 AFRAME.registerComponent('character', {
     init: function(){
         let el = this.el;
@@ -824,6 +823,120 @@ AFRAME.registerComponent('caja_refresco', {
         el.addEventListener("model-loaded", e =>{
             let tree3D = el.getObject3D('mesh');
             const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/CR_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('barra_chocolate_01', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Barra_01_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('barra_chocolate_02', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Barra_02_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('barra_chocolate_03', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Barra_03_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('barra_chocolate_04', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Barra_04_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('pitillo_01', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Pitillo_01_bake.jpg");
+            BakedTexture.flipY = false
+            BakedTexture.encoding = THREE.sRGBEncoding
+            const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
+            if (!tree3D){return;}                   
+            tree3D.traverse(function(node){
+                if (node.isMesh){                           
+                    node.material=  bakedMaterial
+                }
+            });
+        });
+    }
+});
+
+AFRAME.registerComponent('pitillo', {
+    init: function(){
+        let el = this.el;
+        el.addEventListener("model-loaded", e =>{
+            let tree3D = el.getObject3D('mesh');
+            const BakedTexture = new THREE.TextureLoader().load( "resources/Textures/JPG/Pitillos_bake.jpg");
             BakedTexture.flipY = false
             BakedTexture.encoding = THREE.sRGBEncoding
             const bakedMaterial = new THREE.MeshBasicMaterial({map: BakedTexture})
