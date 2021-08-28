@@ -12,7 +12,6 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script> 
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="resources/a_frame_script.js"></script>
@@ -20,6 +19,7 @@
     <title>Entorno virtual ExpM</title>
 </head>
 <body>
+    <!-- Escena de a-frame -->
     <a-scene escena sonido_ambiente controles-informacion background="color: #FFFFFF" light="defaultLightsEnabled: false" fog="none" cursor="rayOrigin: mouse" animation-timeline__A="timeline:#trucksTimeline; loop:true">
         
         <!-- Assets manager -->
@@ -43,18 +43,18 @@
             <a-asset-item id="tanque_02" src="resources/Models/Tanque_02.glb"></a-asset-item>
             <a-asset-item id="tanque_03" src="resources/Models/Tanque_03.glb"></a-asset-item>
             <a-asset-item id="camion" src="resources/Models/Camion.glb"></a-asset-item>
+            <a-asset-item id="ventila_01" src="resources/Models/Ventila_01.glb"></a-asset-item>
+            <a-asset-item id="ventila_02" src="resources/Models/Ventila_02.glb"></a-asset-item>
+            <a-asset-item id="ventila_03" src="resources/Models/Ventila_03.glb"></a-asset-item>
 
             <!-- Navigation mesh -->
             <a-asset-item id="navigation_mesh" src="resources/Models/NavMesh_ext.glb"></a-asset-item>
 
             <!-- Imagen del portal -->
-            <img id="entrada" src="resources/Textures/Room.jpg">
+            <img id="entrada" src="resources/Textures/Outdoors_Scene/Room.jpg">
 
             <!-- Audio -->
             <audio id="andando" src="resources/Audio_files/Motor_de_camion.ogg" preload="auto"></audio>
-            <audio id="parqueo" src="resources/Audio_files/Parqueo.ogg" preload="auto"></audio>
-            <audio id="encendido" src="resources/Audio_files/Encendido_de_camion.ogg" preload="auto"></audio>
-            <audio id="apagado" src="resources/Audio_files/Motor_apagado.ogg" preload="auto"></audio>
 
             <!-- Animaciones de los camiones -->
             <a-timeline id="trucksTimeline">
@@ -73,25 +73,6 @@
                 
             </a-timeline>
         </a-assets>
-
-        <!-- Forma número 1 para el personaje -->
-        <!-- <a-entity id="rig" position ="0 1.6 0" rotation="0 0 0">
-            <a-entity id="camera" camera look-controls wasd-controls="acceleration:24">
-                <a-entity 
-                id="character"
-                geometry="primitive: sphere; radius: 1" 
-                position="0 -1 -3"
-                material="color: gray;">
-                </a-entity>
-            </a-entity>
-        </a-entity> -->
-
-        <!-- Forma número 2 para el personaje -->
-        <!-- <a-entity id="character" geometry="primitive: sphere; radius: 1" position="0 1 0" player_controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;" material="color: gray">
-            <a-entity id="rig" position="0 1 3">
-                <a-entity id="camera" camera ></a-entity>
-            </a-entity>
-        </a-entity> -->
 
         <!-- Funciona pero sin el navmesh -->
         <!-- <a-entity id="character" character gltf-model="#player" position="0 0 -65" scale="0.5 0.5 0.5" player_controls="turnEnabled: true;" animation-mixer="clip: Idle; loop: repeat">
@@ -115,51 +96,45 @@
         <!-- Elementos del entorno -->
         <!-- <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity> -->
         <a-entity id="boss" gltf-model="#player" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
-        <!-- <a-plane id="talkSign" position="0 5.5 -15" width="1" height="1" color="#FFFFFF" material="side: double" event-set__show="_event: click; color:#212327"></a-plane> -->
-        <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class=".raycasteable" ></a-plane>
-        <!-- <a-entity gltf-model="#entorno" entorno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity> -->
-        <a-entity gltf-model="#terreno" terreno scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#arboles" arboles scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#lamparas" lamparas scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#autos_01" autos_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#autos_02" autos_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#fabrica" fabrica scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#extras" extras scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#letrero_01" letrero_01 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#letrero_02" letrero_02 scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
-        <a-entity gltf-model="#torre" torre scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
-        <a-entity gltf-model="#luces_torre" luces_torre scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
-        <a-entity gltf-model="#tanque_01" tanque_01 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
-        <a-entity gltf-model="#tanque_02" tanque_02 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
-        <a-entity gltf-model="#tanque_03" tanque_03 scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-plane id="talkSign" look-at="#rig" info-sign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class=".raycasteable" ></a-plane>
+        <a-entity id="terreno" gltf-model="#terreno" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="arboles" gltf-model="#arboles" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="lamparas" gltf-model="#lamparas" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="autos_fila_a" gltf-model="#autos_01" textura scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="autos_fila_b" gltf-model="#autos_02" textura scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="fabrica" gltf-model="#fabrica" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="extras" gltf-model="#extras" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="letrero_01" gltf-model="#letrero_01" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="letrero_02" gltf-model="#letrero_02" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="torre" gltf-model="#torre" textura scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity id="luces_tanques" gltf-model="#luces_torre" textura scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity id="tanque_01" gltf-model="#tanque_01" textura scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity id="tanque_02" gltf-model="#tanque_02" textura scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity id="tanque_03" gltf-model="#tanque_03" textura scale="0.5 0.5 0.5" rotation="0 180 0" position="0 -0.482 0"></a-entity>
+        <a-entity id="ventila_01" gltf-model="#ventila_01" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="ventila_02" gltf-model="#ventila_02" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
+        <a-entity id="ventila_03" gltf-model="#ventila_03" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
 
         <!-- Camiones -->
-        <a-entity id="camion_01" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 67" 
-            sound__start="src: #encendido; loop: true; autoplay: false;refDistance: 5; volume: 1"
+        <a-entity id="camion_01" gltf-model="#camion" textura scale="0.5 0.5 0.5" position="-37.5 -0.482 67" 
             sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
             animation__depart="property: position; dur: 4000;from: -37.5 -0.482 67; to: -50 -0.482 67;loop: 1; autoplay: false" 
             animation__turn="property: rotation; to: 0 -90 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__go="property: position; dur: 10000;from: -50 -0.482 67; to: -50 -0.482 -85;easing: linear;loop: true; autoplay: false">
         </a-entity>
 
-        <a-entity id="camion_02" gltf-model="#camion" camion sonido_camion scale="0.5 0.5 0.5" position="-50 -0.482 -90" rotation="0 90 0" 
+        <a-entity id="camion_02" gltf-model="#camion" textura sonido_camion scale="0.5 0.5 0.5" position="-50 -0.482 -90" rotation="0 90 0" 
             sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
-            sound__park="src: #parqueo; loop: true; refDistance: 5; volume: 1"
             animation__drive="property: position; dur: 10000;from: -60 -0.482 -85; to: -60 -0.482 75;easing: linear;loop: 1; autoplay: false"
             animation__turning="property: rotation;from: 0 90 0; to: 0 0 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__park="property: position; dur: 4000;from: -60 -0.482 75; to: -37.5 -0.482 75;loop: 1; easing: easeOutQuad; autoplay: false">
         </a-entity>
 
-        <a-entity id="camion_03" static-body="shape: box; mass: 2" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 91"></a-entity>
-        <a-entity id="camion_04" gltf-model="#camion" camion scale="0.5 0.5 0.5" position="-37.5 -0.482 83"></a-entity>
+        <a-entity id="camion_03" gltf-model="#camion" textura scale="0.5 0.5 0.5" position="-37.5 -0.482 91"></a-entity>
+        <a-entity id="camion_04" gltf-model="#camion" textura scale="0.5 0.5 0.5" position="-37.5 -0.482 83"></a-entity>
 
         <!-- Navigation mesh -->
         <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
-
-        <!-- <a-link position="2 2 -12" href="inside.html" title="Entrada" image="#entrada" geometry="primitive: plane"></a-link> -->
-        <!-- <a-entity  link="href: inside.html" geometry="primitive: plane; height: 6.5; width: 8.5" material="backgroundColor: #1a1a1a; blending: normal; borderEnabled: 0; pano: #entrada; shader: portal; side:double" position="-13.5 3.3 -6.5" 
-            animation="property: scale; from:1 0 1; to: 1 1 1; easing: linear; dur: 1500; loop: 1; autoplay: true; delay: 10000">
-        </a-entity> -->
 
         <!-- Crea el cielo del entorno virtual -->
         <a-entity 
@@ -169,6 +144,20 @@
     </a-scene>
 
     <!-- Normal HTML -->
+
+    <!-- Pagina de carga -->
+    <!-- <div class="o-landing">
+        <div class="o-loadingContainer">
+            <h1 id="title" class="o-loadingTitle">Tu experiencia se esta cargando</h1>
+            <div class="o-loading">
+                <div id="loader" class="o-loader"></div>
+                <button id="enterButton" class="o-enterButton" disabled>Comenzar</button>
+            </div>
+            <div class="o-buttonConatiner">
+                <button class="o-secondaryButton">Volver</button>
+            </div>
+        </div>
+    </div> -->
 
     <!-- Cabecera -->
     <div class="o-header">
@@ -219,12 +208,12 @@
     <div id="container" class="o-container">
         <div id="info-01" class="o-information">
             <h3>Ingeniero jefe dice:</h3>
-            <p>Bienvenido ingenier@, el día de hoy la práctica esta enfocada en las siete herramientas estadísticas</p>
+            <p id="welcome-text">Bienvenido ingenier@, el día de hoy la práctica esta enfocada en las siete herramientas estadísticas</p>
             <button class="o-principal" onclick="nextText()">Continuar</button>
         </div>
         <div id="info-02" class="o-information" style="display: none;">
             <h3>Ingeniero jefe dice:</h3>
-            <p>Deberas de inspeccionar todos los productos suministrados y anotar sus caracteristicas en el formato para poder aplicar las herramientas solicitadas</p>
+            <p id="practice-description">Deberas de inspeccionar todos los productos suministrados y anotar sus caracteristicas en el formato para poder aplicar las herramientas solicitadas</p>
             <button class="o-principal" onclick="nextText()">Continuar</button>
         </div>
         <div id="info-03" class="o-information" style="display: none;">
@@ -243,7 +232,7 @@
     </div>
     <div id="videoModal" class="o-modal">
         <div class="o-modalContent">
-            <video id="video" src="resources/Videos/Miss_Minutes_TVA.mp4" width="60%" heigth="60%" type="video/mp4"></video>
+            <video id="video"  width="60%" heigth="60%" type="video/mp4"></video>
             <div id="closeButton" class="o-close" onclick="closeVideo()">
                 <span class="material-icons o-closed" style="font-size:24px;">close</span>
             </div>

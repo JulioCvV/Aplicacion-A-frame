@@ -13,13 +13,13 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
     <script src="resources/a_frame_script.js"></script>
-    <script defer src="resources/interior_main_script.js" type="text/javascript"></script>
+    <script defer src="resources/main_script.js" type="text/javascript"></script>
     <title>Interior</title>
 </head>
 
 <body>
+    <!-- Escena de a-frame -->
     <a-scene escena id="myScene" sonido_ambiente fog="none" cursor="rayOrigin: mouse">
         
         <!-- Assets manager -->
@@ -60,12 +60,6 @@
 
             <!-- Navigation mesh -->
             <a-asset-item id="navigation_mesh" src="resources/Models/Modelos_interior/NavMesh_int.glb"></a-asset-item>
-            <!-- <a-asset-item id="luces" src="resources/Modelos/Escena_interior/Luces.glb"></a-asset-item>
-            <a-asset-item id="mesa_01" src="resources/Modelos/Escena_interior/Mesa_01.glb"></a-asset-item>
-            <a-asset-item id="mesa_02" src="resources/Modelos/Escena_interior/Mesa_02.glb"></a-asset-item>
-            <a-asset-item id="mesa_03" src="resources/Modelos/Escena_interior/Mesa_03.glb"></a-asset-item>
-            <a-asset-item id="poster" src="resources/Modelos/Escena_interior/Poster.glb"></a-asset-item>
-            <a-asset-item id="transportadora" src="resources/Modelos/Escena_interior/Transportadora.glb"></a-asset-item> -->
         </a-assets>
 
         <!-- Forma número 2 para el personaje -->
@@ -84,40 +78,38 @@
         </a-entity>
 
         <!-- Elementos de la oficina -->
-        <a-entity gltf-model="#habitacion" habitacion scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#luces" luces scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#mesa_01" mesa_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#mesa_02" mesa_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#mesa_03" mesa_03 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#silla_01" silla_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#silla_02" silla_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#computador_01" computador_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#computador_02" computador_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#caja_arroz" caja_arroz scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#caja_chocolate_01" caja_chocolate_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#caja_chocolate_02" caja_chocolate_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#caja_refresco" caja_refresco scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#barra_chocolate_01" barra_chocolate_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#barra_chocolate_02" barra_chocolate_02 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#barra_chocolate_03" barra_chocolate_03 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#barra_chocolate_04" barra_chocolate_04 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_01" pitillo_01 scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_02" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_03" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_04" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_05" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_06" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_07" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_08" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#pitillo_09" pitillo scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#metro" metro scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#calibre" calibre scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#balanza" scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#poster" poster scale="0.5 0.5 0.5"></a-entity>
-        <a-entity gltf-model="#transportadora" transportadora scale="0.5 0.5 0.5"></a-entity>
-
-        <!-- <a-plane id="talkSign" look-at="#rig" talksign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" ></a-plane> -->
-        <a-entity id="taskSign" link="href: http://www.google.com" geometry="primitive: plane; height: 1.5; width: 1.5" tasksign position="0.6 5.2 7.8"></a-entity>
+        <a-entity id="habitacion" gltf-model="#habitacion" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="lamparas" gltf-model="#luces" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="mesa_01" gltf-model="#mesa_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="mesa_02" gltf-model="#mesa_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="mesa_03" gltf-model="#mesa_03" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="silla_01" gltf-model="#silla_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="silla_02" gltf-model="#silla_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="computador_01" gltf-model="#computador_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="computador_02" gltf-model="#computador_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="caja_arroz" gltf-model="#caja_arroz" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="caja_chocolate_01" gltf-model="#caja_chocolate_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="caja_chocolate_02" gltf-model="#caja_chocolate_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="caja_refresco" gltf-model="#caja_refresco" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="barra_01" gltf-model="#barra_chocolate_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="barra_02" gltf-model="#barra_chocolate_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="barra_03" gltf-model="#barra_chocolate_03" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="barra_04" gltf-model="#barra_chocolate_04" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_01" gltf-model="#pitillo_01" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_02" gltf-model="#pitillo_02" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_03" gltf-model="#pitillo_03" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_04" gltf-model="#pitillo_04" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_05" gltf-model="#pitillo_05" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_06" gltf-model="#pitillo_06" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_07" gltf-model="#pitillo_07" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_08" gltf-model="#pitillo_08" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="pitillo_09" gltf-model="#pitillo_09" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="metro" gltf-model="#metro" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="calibre" gltf-model="#calibre" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="balanza" gltf-model="#balanza" scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="poster" gltf-model="#poster" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="transportadora" gltf-model="#transportadora" textura-oficina scale="0.5 0.5 0.5"></a-entity>
+        <a-entity id="taskSign" link="href: http://www.google.com" geometry="primitive: plane; height: 1.5; width: 1.5" info-sign position="0.6 5.2 7.8"></a-entity>
 
         <!-- Navigation mesh -->
         <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
@@ -125,6 +117,7 @@
     </a-scene>
 
     <!-- Normal HTML -->
+    
     <!-- Cabecera -->
     <div class="o-header">
         <h1>Aplicación</h1>
