@@ -161,13 +161,13 @@
 
     <!-- Cabecera -->
     <div class="o-header">
-        <h1>Aplicación</h1>
+        <h1 id="studentName">Aplicación</h1>
         <div class="o-optionsBtns">
             <div id="infoButton" class="o-crcButton" onclick="reveal()" >
                 <span id="infoIcon" class="material-icons o-closed" style="font-size:24px;">help_outline</span>
             </div>
             <div class="o-sound" onmouseover="volumeControl()" onmouseout="quitVolumeControl()">
-                <div id="soundButton" class="o-crcButton" onclick="updateSound()" >
+                <div id="soundButton" class="o-crcButton" onclick="updateSound(this)" >
                     <span id="soundIcon" class="material-icons o-closed" style="font-size:24px;">volume_off</span>
                 </div>
                 <input id="volumeSlider" type="range" min="0" max="100" value="50" class="o-volumeSlider">
@@ -220,7 +220,7 @@
             <h3>Ingeniero jefe dice:</h3>
             <p>Para un mejor entendimiento del proceso, visualiza el video a continuación</p>
             <div class="o-desitionButtons">
-                <button class="o-secundario" onclick="openVideo()">Ver video</button>
+                <button class="o-secundario" onclick="openVideo(this)">Ver video</button>
                 <button id="nextButton" class="o-principal" onclick="nextText()" disabled>Continuar</button>
             </div>
         </div>
@@ -233,7 +233,7 @@
     <div id="videoModal" class="o-modal">
         <div class="o-modalContent">
             <video id="video"  width="60%" heigth="60%" type="video/mp4"></video>
-            <div id="closeButton" class="o-close" onclick="closeVideo()">
+            <div id="closeButton" class="o-close" onclick="closeVideo(this)">
                 <span class="material-icons o-closed" style="font-size:24px;">close</span>
             </div>
         </div>
