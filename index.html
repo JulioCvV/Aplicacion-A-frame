@@ -232,7 +232,17 @@
     </div>
     <div id="videoModal" class="o-modal">
         <div class="o-modalContent">
-            <video id="video"  width="60%" heigth="60%" type="video/mp4"></video>
+            <div id="videoContainer" class="o-videoContainer">
+                <video id="video"  width="100%" type="video/mp4"></video>
+                <div id="videoVolumeControl" class="o-vvcontrols">
+                    <div class="o-sound" onmouseover="videoVolumeControl()" onmouseout="quitVideoVolumeControl()">
+                        <div id="vsoundButton" class="o-crcButton" onclick="updateVideoSound()" >
+                            <span id="videoSoundIcon" class="material-icons o-closed" style="font-size:24px;">volume_down</span>
+                        </div>
+                        <input id="videoVolumeSlider" type="range" min="0" max="100" value="50" class="o-volumeSlider">
+                    </div>
+                </div>
+            </div>
             <div id="closeButton" class="o-close" onclick="closeVideo(this)">
                 <span class="material-icons o-closed" style="font-size:24px;">close</span>
             </div>

@@ -1,25 +1,36 @@
-let showDisplay = [1, 0, 0, 0];
-let modal = document.getElementById("videoModal");
-let video = document.getElementById("video");
-let close = document.getElementById("closeButton");
-let information = document.getElementById("container");
-let isFirstTimePlaying = true;
-let sonido = document.getElementById('factorySound');
-let iconoSonido = document.getElementById('soundIcon');
+/** variables relacionadas con el sonido ambiente */
+let sound = document.getElementById('factorySound');
+let soundIcon = document.getElementById('soundIcon'); 
 let volumeBar = document.getElementById('volumeSlider');
-let isPlaying = false;
+let isPlaying = false; 
 let turnSoundOff = false;
 let volumeVal = null;
 let defaultValue = false;
+/** variables relacionadas con la información de la escena */
+let showDisplay = [1, 0, 0, 0];
+let information = document.getElementById("container");
 let controlsInfo = null;
 let escena = document.querySelector('a-scene');
 let next = document.getElementById('nextButton');
 let infoPractice = "";
-let videoConstants = "";
 let description = document.getElementById("practice-description");
 let names = document.getElementById('studentName');
 let namesInside = document.getElementById('studentNameInside');
 let bubble = document.getElementById('taskSign');
+/** variables relacionadas con el video */
+let modal = document.getElementById("videoModal");
+let video = document.getElementById("video");
+let close = document.getElementById("closeButton");
+let videoConstants = "";
+let isFirstTimePlaying = true;
+/** variables relacionadas con el sonido del video */
+let videoSoundContainer = document.getElementById('videoVolumeControl');
+let videoSoundIcon = document.getElementById('videoSoundIcon'); 
+let videoVolumeBar = document.getElementById('videoVolumeSlider');
+let isVideoSoundPlaying = false; 
+let videoVolumeVal = null;
+let videoSoundDefaultValue = false;
+
 
 videoConstants = {
     Barra_chocolate: "resources/Videos/Clone_Wars.mp4",
@@ -37,11 +48,12 @@ videoConstants = {
 //     Refresco: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Miss_Minutes_TVA.mp4?raw=true",
 // };
 
-// infoPractice = {
-//     "nombre": "Siete herramientas estadísticas",
-//     "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
-//     "producto": "Pitillo"
-// };
+infoPractice = {
+    "nombre": "Siete herramientas estadísticas",
+    "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
+    "producto": "Refresco",
+    "estudiante":"Julio Vallejo Vera"
+};
 
 /**
  * Función que permite obtener, desde la aplicación de React, la información correspondiente al nombre del usuario y la práctica asignada,
@@ -118,11 +130,13 @@ function openVideo(e) {
     if (isFirstTimePlaying == false) {
         video.removeAttribute('autoplay', '')
         video.setAttribute('controls', '')
+        videoSoundContainer.style.display ="none";
     } else {
         video.setAttribute('autoplay', '')
-        video.playbackRate = 10.0;
+        // video.playbackRate = 10.0;
+        video.volume = 0.5;
+        isVideoSoundPlaying=true;
     }
-
     if (turnSoundOff == false) {
         console.log("en el video: " + turnSoundOff);
         updateSound(e)
@@ -262,9 +276,9 @@ function hide() {
 function playSound() {
 
     if (isPlaying == false) {
-        sonido.play()
-        sonido.volume = 0.5
-        iconoSonido.innerHTML = 'volume_up'
+        sound.play()
+        sound.volume = 0.5
+        soundIcon.innerHTML = 'volume_up'
         isPlaying = true;
 
     }
@@ -289,15 +303,15 @@ function quitVolumeControl() {
  */
 volumeBar.oninput = function () {
     volumeVal = volumeBar.value
-    sonido.volume = volumeVal / 100
-    if (sonido.volume === 0) {
-        iconoSonido.innerHTML = 'volume_off'
+    sound.volume = volumeVal / 100
+    if (sound.volume === 0) {
+        soundIcon.innerHTML = 'volume_off'
         isPlaying = false;
         defaultValue = true;
-    } else if (sonido.volume <= 0.5 && sonido.volume >= 0) {
-        iconoSonido.innerHTML = 'volume_down'
+    } else if (sound.volume <= 0.5 && sound.volume >= 0) {
+        soundIcon.innerHTML = 'volume_down'
     } else {
-        iconoSonido.innerHTML = 'volume_up'
+        soundIcon.innerHTML = 'volume_up'
     }
 }
 
@@ -312,34 +326,94 @@ function updateSound(e) {
         turnSoundOff = false
     }
 
-    if (isPlaying == false && sonido.volume == 0 && defaultValue == false && turnSoundOff == false) {
-        sonido.volume = volumeVal / 100
+    if (isPlaying == false && sound.volume == 0 && defaultValue == false && turnSoundOff == false) {
+        sound.volume = volumeVal / 100
         volumeBar.value = volumeVal
-        if (sonido.volume <= 0.5 && sonido.volume >= 0) {
-            iconoSonido.innerHTML = 'volume_down'
+        if (sound.volume <= 0.5 && sound.volume >= 0) {
+            soundIcon.innerHTML = 'volume_down'
         } else {
-            iconoSonido.innerHTML = 'volume_up'
+            soundIcon.innerHTML = 'volume_up'
         }
         isPlaying = true;
-    } else if (isPlaying == true && sonido.volume != 0 && defaultValue == false && turnSoundOff == true) {
-        sonido.volume = 0
+    } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == true) {
+        sound.volume = 0
         volumeVal = volumeBar.value
         volumeBar.value = 0
-        iconoSonido.innerHTML = 'volume_off'
+        soundIcon.innerHTML = 'volume_off'
         isPlaying = false
-    } else if (isPlaying == true && sonido.volume != 0 && defaultValue == false && turnSoundOff == false) {
-        sonido.volume = 0
+    } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == false) {
+        sound.volume = 0
         volumeVal = volumeBar.value
         volumeBar.value = 0
-        iconoSonido.innerHTML = 'volume_off'
+        soundIcon.innerHTML = 'volume_off'
         isPlaying = false
         console.log("entre");
-    } else if (isPlaying == false && sonido.volume == 0 && defaultValue == true && turnSoundOff == false) {
-        sonido.volume = 0.5
-        volumeBar.value = sonido.volume * 100
-        iconoSonido.innerHTML = 'volume_up'
+    } else if (isPlaying == false && sound.volume == 0 && defaultValue == true && turnSoundOff == false) {
+        sound.volume = 0.5
+        volumeBar.value = sound.volume * 100
+        soundIcon.innerHTML = 'volume_up'
         isPlaying = true
         defaultValue = false
+    }
+}
+
+/**
+ * Función que permite desplegar los controles del audio
+ */
+ function videoVolumeControl() {
+    videoVolumeBar.style.display = 'block'
+}
+
+/**
+ * Función que permite remover los controles del audio
+ */
+function quitVideoVolumeControl() {
+    videoVolumeBar.style.display = 'none'
+}
+
+/**
+ * Función que permite reducir o aumentar el volumen del video a traves del slide
+ */
+ videoVolumeBar.oninput = function () {
+    videoVolumeVal = videoVolumeBar.value
+    video.volume = videoVolumeVal / 100
+    if (video.volume === 0) {
+        videoSoundIcon.innerHTML = 'volume_off'
+        isVideoSoundPlaying = false;
+        videoSoundDefaultValue = true;
+    } else if (video.volume <= 0.5 && video.volume >= 0) {
+        videoSoundIcon.innerHTML = 'volume_down'
+    } else {
+        videoSoundIcon.innerHTML = 'volume_up'
+    }
+}
+
+/**
+ * Función que permite actualizar el volumen delvideo
+ */
+function updateVideoSound() {
+
+    if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == false) {
+        video.volume = videoVolumeVal / 100
+        videoVolumeBar.value = videoVolumeVal
+        if (video.volume <= 0.5 && video.volume >= 0) {
+            videoSoundIcon.innerHTML = 'volume_down'
+        } else {
+            videoSoundIcon.innerHTML = 'volume_up'
+        }
+        isVideoSoundPlaying = true;
+    } else if (isVideoSoundPlaying == true && video.volume != 0 && videoSoundDefaultValue == false) {
+        video.volume = 0
+        videoVolumeVal = videoVolumeBar.value
+        videoVolumeBar.value = 0
+        videoSoundIcon.innerHTML = 'volume_off'
+        isVideoSoundPlaying = false
+    }  else if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == true) {
+        video.volume = 0.5
+        videoVolumeBar.value = video.volume * 100
+        videoSoundIcon.innerHTML = 'volume_up'
+        isVideoSoundPlaying = true
+        videoSoundDefaultValue = false
     }
 }
 
