@@ -105,6 +105,35 @@ AFRAME.registerComponent('escena', {
 });
 
 /**
+ * Componente para asignar las texturas al simbolo de alerta de las señales.
+ */
+AFRAME.registerComponent('alert', {
+    init: function () {
+        let el = this.el;
+        el.addEventListener("loaded", e => {
+            let tree3D = el.getObject3D('mesh');
+            let alertTexture;
+            let alertAlphaTexture;
+            const textureLoader = new THREE.TextureLoader();
+            alertTexture = textureLoader.load("resources/Textures/Outdoors_Scene/Alert_icon.png");
+            alertAlphaTexture = textureLoader.load('resources/Textures/Outdoors_Scene/Alert_icon_alpha.png')
+            alertTexture.encoding = THREE.sRGBEncoding
+            const alertMaterial = new THREE.MeshBasicMaterial()
+            alertMaterial.map = alertTexture
+            alertMaterial.alphaMap = alertAlphaTexture
+            alertMaterial.transparent = true
+            alertMaterial.side = THREE.DoubleSide
+            if (!tree3D) { return; }
+            tree3D.traverse(function (node) {
+                if (node.isMesh) {
+                    node.material = alertMaterial
+                }
+            });
+        });
+    }
+});
+
+/**
  * Componente para permitir que el usuario se desplace por el entorno en tercera persona
  */
 AFRAME.registerComponent('player_controls', {
@@ -377,10 +406,12 @@ AFRAME.registerComponent('textura-oficina', {
 });
 
 /**
- * Función que permite desplegar el video del producto
+ * Función que permite desplegar las tarjetas con la información de la práctica
  */
 function show() {
     let information = document.getElementById("container");
-    information.style.display = "flex"
+    let alertIcon = document.getElementById("alert");
+    information.style.display = "flex";
+    alertIcon.parentNode.removeChild(alertIcon);
 }
 
