@@ -89,7 +89,7 @@
         </a-entity> -->
 
         <!-- Usuario -->
-        <a-entity id="rig" position="0 0 -65" rotation="0 180 0" movement-controls="constrainToNavMesh: true; speed: 0.3">
+        <a-entity id="rig" position="0 0.5 -65" rotation="0 180 0" movement-controls="constrainToNavMesh: true; speed: 0.3">
             <a-entity id="camera" camera="active:true; far: 1000; near: 0.1; fov: 50;" position="0 4.3 0" look-controls cursor="rayOrigin: mouse" raycaster="near: 1;far: 30; objects: .raycasteable"></a-entity>
         </a-entity>
 
@@ -97,7 +97,7 @@
         <!-- <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity> -->
         <a-entity id="boss" gltf-model="#player" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
         <a-plane id="talkSign" look-at="#rig" info-sign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class="raycasteable" >
-            <a-plane id="alert" alert position="0.3 0.6 0.1" width="0.4" height="0.4" color="#FFFFFF" material="shader: flat; side: double"></a-plane>
+            <a-plane id="alert" alert position="0.3 0.6 0.1" width="0.4" height="0.4" color="#FFFFFF" material="side: double"></a-plane>
         </a-plane>
         <a-entity id="terreno" gltf-model="#terreno" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity id="arboles" gltf-model="#arboles" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
@@ -252,7 +252,7 @@
     <div id="videoModal" class="o-modal">
         <div class="o-modalContent">
             <div id="videoContainer" class="o-videoContainer">
-                <video id="video"  width="100%" type="video/mp4"></video>
+                <video id="video" width="100%" type="video/mp4"></video>
                 <div id="videoVolumeControl" class="o-vvcontrols">
                     <div class="o-sound" onmouseover="videoVolumeControl()" onmouseout="quitVideoVolumeControl()">
                         <div id="vsoundButton" class="o-crcButton" onclick="updateVideoSound()" >
