@@ -131,6 +131,7 @@ function openVideo(e) {
         video.removeAttribute('autoplay', '')
         video.setAttribute('controls', '')
         videoSoundContainer.style.display ="none";
+        video.volume = 0.5;
     } else {
         video.setAttribute('autoplay', '')
         // video.playbackRate = 10.0;
