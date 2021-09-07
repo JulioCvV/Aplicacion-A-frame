@@ -233,6 +233,7 @@ function createPortal() {
         autoplay: 'true',
 
     })
+    portal.setAttribute('class','raycasteable');
     escena.appendChild(portal)
 }
 
@@ -265,7 +266,7 @@ AFRAME.registerComponent('controles-informacion', {
  */
 function reveal() {
     controlsInfo = document.getElementById('controlsContainer')
-    controlsInfo.style.display = "flex"
+    controlsInfo.style.display = "flex";
     hide()
 }
 
