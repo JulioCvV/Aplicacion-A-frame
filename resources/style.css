@@ -227,13 +227,22 @@ div h3{
   width: 50rem;
   top:50%
 }
-.o-vvcontrols{
+.o-videoContainer:hover .o-vvcontrols{
   display: flex;
+}
+.o-vvcontrols{
+  display: none;
   width: 100%;
   background-color: aqua;
   position: absolute;
   bottom: 0.20rem;
   padding: 0.25rem 0;
+  transition: 100ms;
+  animation: reveal-controls 1s;
+}
+@keyframes reveal-controls{
+from{opacity: 0;}
+to{opacity: 1;}
 }
 .o-close, .o-crcButton{
   margin: 0 0 0 1rem;
@@ -256,7 +265,6 @@ div h3{
 .o-close{
   display: none;
 }
-
 .o-npcName{
   display: flex;
   justify-content: space-between;
