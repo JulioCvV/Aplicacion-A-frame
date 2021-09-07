@@ -256,4 +256,9 @@ div h3{
 .o-close{
   display: none;
 }
+
+.o-npcName{
+  display: flex;
+  justify-content: space-between;
+}
 /* Lab informaton cards end */

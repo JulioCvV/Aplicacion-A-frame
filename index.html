@@ -96,7 +96,9 @@
         <!-- Elementos del entorno -->
         <!-- <a-entity id="boss" gltf-model="#npc" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: npc_idle; loop: repeat"></a-entity> -->
         <a-entity id="boss" gltf-model="#player" character position="0 0 -14" rotation="0 180 0" scale="0.5 0.5 0.5" animation-mixer="clip: Idle; loop: repeat"></a-entity>
-        <a-plane id="talkSign" look-at="#rig" info-sign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class="raycasteable" ></a-plane>
+        <a-plane id="talkSign" look-at="#rig" info-sign position="0 5.5 -14" width="1.5" height="1.5" color="#FFFFFF" material="side: double" onclick="show()" class="raycasteable" >
+            <a-plane id="alert" alert position="0.3 0.6 0.1" width="0.4" height="0.4" color="#FFFFFF" material="shader: flat; side: double"></a-plane>
+        </a-plane>
         <a-entity id="terreno" gltf-model="#terreno" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity id="arboles" gltf-model="#arboles" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
         <a-entity id="lamparas" gltf-model="#lamparas" textura scale="0.5 0.5 0.5" rotation="0 180 0"></a-entity>
@@ -137,10 +139,7 @@
         <a-entity gltf-model="#navigation_mesh" scale="0.5 0.5 0.5" nav-mesh visible="false"></a-entity>
 
         <!-- Crea el cielo del entorno virtual -->
-        <a-entity 
-            id="ambiente" 
-            environment="preset:default; ground:none; ">
-        </a-entity>
+        <a-entity id="ambiente" environment="preset:default; ground:none; "></a-entity>
     </a-scene>
 
     <!-- Normal HTML -->
@@ -207,17 +206,32 @@
     <!-- Información del laboratorio -->
     <div id="container" class="o-container">
         <div id="info-01" class="o-information">
-            <h3>Ingeniero jefe dice:</h3>
+            <div class="o-npcName">
+                <h3>Ingeniero jefe dice:</h3>
+                <div id="containerCloseButton" class="o-crcButton" onclick="closeInfoCards()">
+                    <span class="material-icons o-closed" style="font-size:24px;">close</span>
+                </div>
+            </div>
             <p id="welcome-text">Bienvenido ingenier@, el día de hoy la práctica esta enfocada en las siete herramientas estadísticas</p>
             <button class="o-principal" onclick="nextText()">Continuar</button>
         </div>
         <div id="info-02" class="o-information" style="display: none;">
-            <h3>Ingeniero jefe dice:</h3>
+            <div class="o-npcName">
+                <h3>Ingeniero jefe dice:</h3>
+                <div id="containerCloseButton" class="o-crcButton" onclick="closeInfoCards()">
+                    <span class="material-icons o-closed" style="font-size:24px;">close</span>
+                </div>
+            </div>
             <p id="practice-description">Deberas de inspeccionar todos los productos suministrados y anotar sus caracteristicas en el formato para poder aplicar las herramientas solicitadas</p>
             <button class="o-principal" onclick="nextText()">Continuar</button>
         </div>
         <div id="info-03" class="o-information" style="display: none;">
-            <h3>Ingeniero jefe dice:</h3>
+            <div class="o-npcName">
+                <h3>Ingeniero jefe dice:</h3>
+                <div id="containerCloseButton" class="o-crcButton" onclick="closeInfoCards()">
+                    <span class="material-icons o-closed" style="font-size:24px;">close</span>
+                </div>
+            </div>
             <p>Para un mejor entendimiento del proceso, visualiza el video a continuación</p>
             <div class="o-desitionButtons">
                 <button class="o-secundario" onclick="openVideo(this)">Ver video</button>
@@ -225,7 +239,12 @@
             </div>
         </div>
         <div id="info-04" class="o-information" style="display: none;">
-            <h3>Ingeniero jefe dice:</h3>
+            <div class="o-npcName">
+                <h3>Ingeniero jefe dice:</h3>
+                <div id="containerCloseButton" class="o-crcButton" onclick="closeInfoCards()">
+                    <span class="material-icons o-closed" style="font-size:24px;">close</span>
+                </div>
+            </div>
             <p>Ahora dirigete a tu estación de trabajo haciendo click sobre el portal a tu derecha</p>
             <button class="o-principal" onclick="endText()">Hasta luego</button>
         </div>

@@ -147,8 +147,15 @@ function openVideo(e) {
  * Función que permite finalizar con los dialogos
  */
 function endText() {
-    information.style.display = "none"
+    information.style.display = "none";
     nextText()
+}
+
+/**
+ * Función para cerrar los dialogos
+ */
+function closeInfoCards(){
+    information.style.display = "none";
 }
 
 /**
