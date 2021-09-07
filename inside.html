@@ -127,7 +127,7 @@
                 <span id="infoIcon" class="material-icons o-closed" style="font-size:24px;">help_outline</span>
             </div>
             <div class="o-sound" onmouseover="volumeControl()" onmouseout="quitVolumeControl()">
-                <div id="soundButton" class="o-crcButton" onclick="updateSound()">
+                <div id="asoundButton" class="o-crcButton" onclick="updateSound(this)">
                     <span id="soundIcon" class="material-icons o-closed" style="font-size:24px;">volume_off</span>
                 </div>
                 <input id="volumeSlider" type="range" min="0" max="100" value="50" class="o-volumeSlider">
@@ -145,12 +145,18 @@
             <div class="o-keyOptions">
                 <div class="o-keys">
                     <div class="o-key">A</div>
-                    <div class="o-key">W</div>
+                    <div class="o-up">
+                        <div class="o-key">W</div>
+                        <div class="o-key">S</div>
+                    </div>
                     <div class="o-key">D</div>
                 </div>
                 <div class="o-keys">
                     <div class="o-key">&#129080</div>
-                    <div class="o-key">&#129081</div>
+                    <div class="o-up">
+                        <div class="o-key">&#129081</div>
+                        <div class="o-key">&#129083</div>
+                    </div>
                     <div class="o-key">&#129082</div>
                 </div>
             </div>
