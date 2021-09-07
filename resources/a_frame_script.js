@@ -121,6 +121,7 @@ AFRAME.registerComponent('alert', {
             const alertMaterial = new THREE.MeshBasicMaterial()
             alertMaterial.map = alertTexture
             alertMaterial.alphaMap = alertAlphaTexture
+            alertMaterial.alphaTest = 0.6
             alertMaterial.transparent = true
             alertMaterial.side = THREE.DoubleSide
             if (!tree3D) { return; }
