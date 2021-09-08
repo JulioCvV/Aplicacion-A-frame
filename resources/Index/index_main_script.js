@@ -48,12 +48,12 @@ videoConstants = {
 //     Refresco: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Miss_Minutes_TVA.mp4?raw=true",
 // };
 
-infoPractice = {
-    "nombre": "Siete herramientas estadísticas",
-    "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
-    "producto": "Refresco",
-    "estudiante": "Julio Vallejo Vera"
-};
+// infoPractice = {
+//     "nombre": "Siete herramientas estadísticas",
+//     "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
+//     "producto": "Refresco",
+//     "estudiante": "Julio Vallejo Vera"
+// };
 
 /**
  * Función que permite obtener, desde la aplicación de React, la información correspondiente al nombre del usuario y la práctica asignada,
@@ -238,17 +238,8 @@ function createPortal() {
 }
 
 /**
- * Componente que permite llamar a la función que incia el sonido ambiente
+ * Funcion que permite añadir el sonido a los camiones
  */
-AFRAME.registerComponent('sonido_ambiente', {
-    init: function () {
-        let el = this.el
-        el.addEventListener('loaded', e => {
-            playSound()
-        })
-    }
-});
-
 function addTrucksSound() {
     let camion_01 = document.getElementById('camion_01');
     let camion_02 = document.getElementById('camion_02');
@@ -437,6 +428,9 @@ function updateVideoSound() {
     }
 }
 
+/**
+ * Función que permite conocer cuando la escena ha terminado de cargar y poder remover el loader
+ */
 document.addEventListener('DOMContentLoaded', function () {
     let scene = document.querySelector('a-scene');
     let landing = document.getElementById('landing');
@@ -448,24 +442,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let page = path.split("/").pop();
     console.log(page);
 
-    if(page=="index.html"){
+    
+        scene.addEventListener('loaded', function (e) {
+            setTimeout(() => {
+                loader.style.display = 'none';
+                enterButton.style.position = 'unset';
+                enterButton.removeAttribute("disabled");
+                title.innerHTML = "Tu experiencia se ha cargado"
+            }, 2000);
+        });
 
-    scene.addEventListener('loaded', function (e) {
-        setTimeout(() => {
-            loader.style.display = 'none';
-            enterButton.style.position = 'unset';
-            enterButton.removeAttribute("disabled");
-            title.innerHTML = "Tu experiencia se ha cargado"
-        }, 2000);
-    });
-
-    enterButton.addEventListener('click', function (e) {
-        landing.style.display = 'none';
-        playSound();
-        addTrucksSound();
-        reveal();
-    });
-}
+        enterButton.addEventListener('click', function (e) {
+            landing.style.display = 'none';
+            playSound();
+            addTrucksSound();
+            reveal();
+        });
 })
 
 

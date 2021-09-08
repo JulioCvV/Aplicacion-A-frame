@@ -68,7 +68,7 @@ body{
   background-color: var(--main-color);
   cursor: pointer;
   margin: 1rem;
-  font-family: 'Lato', sans-serif;
+  font-family: var(--title-font);
   font-size: 2rem;
   font-weight: bold;
   position: absolute;
@@ -105,6 +105,7 @@ body{
   background-color: #E87140;
   color:#FFFFFF;
 }
+/* Loading screen section end*/
 
 /* Header section */
 .o-header{
