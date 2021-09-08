@@ -122,12 +122,14 @@
             animation__depart="property: position; dur: 4000;from: -37.5 -0.482 67; to: -50 -0.482 67;loop: 1; autoplay: false" 
             animation__turn="property: rotation; to: 0 -90 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__go="property: position; dur: 10000;from: -50 -0.482 67; to: -50 -0.482 -85;easing: linear;loop: true; autoplay: false">
+            <a-plane id="camion_sombra" position="0 -0.6 0" rotation="90 90 0" width="30" height="30" truck_shadow material="side: double"></a-plane>
         </a-entity>
 
         <a-entity id="camion_02" gltf-model="#camion" textura sonido_camion scale="0.5 0.5 0.5" position="-50 -0.482 -90" rotation="0 90 0" 
             animation__drive="property: position; dur: 10000;from: -60 -0.482 -85; to: -60 -0.482 75;easing: linear;loop: 1; autoplay: false"
             animation__turning="property: rotation;from: 0 90 0; to: 0 0 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__park="property: position; dur: 4000;from: -60 -0.482 75; to: -37.5 -0.482 75;loop: 1; easing: easeOutQuad; autoplay: false">
+            <a-plane id="camion_sombra" position="0 -0.6 0" rotation="90 90 0" width="30" height="30" truck_shadow material="side: double"></a-plane>
         </a-entity>
 
         <a-entity id="camion_03" gltf-model="#camion" textura scale="0.5 0.5 0.5" position="-37.5 -0.482 91"></a-entity>

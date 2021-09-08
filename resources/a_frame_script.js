@@ -134,6 +134,30 @@ AFRAME.registerComponent('alert', {
     }
 });
 
+AFRAME.registerComponent('truck_shadow', {
+    init: function () {
+        let el = this.el;
+        el.addEventListener("loaded", e => {
+            let tree3D = el.getObject3D('mesh');
+            let shadowTexture;
+            const textureLoader = new THREE.TextureLoader();
+            shadowTexture = textureLoader.load("resources/Textures/Outdoors_Scene/camion_sombra.png");
+            shadowTexture.encoding = THREE.sRGBEncoding
+            const shadowMaterial = new THREE.MeshBasicMaterial()
+            // shadowMaterial.color = 0xffffff
+            shadowMaterial.map = shadowTexture
+            shadowMaterial.transparent = true
+            shadowMaterial.side = THREE.DoubleSide
+            if (!tree3D) { return; }
+            tree3D.traverse(function (node) {
+                if (node.isMesh) {
+                    node.material = shadowMaterial
+                }
+            });
+        });
+    }
+});
+
 /**
  * Componente para permitir que el usuario se desplace por el entorno en tercera persona
  */
