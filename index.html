@@ -20,7 +20,7 @@
 </head>
 <body>
     <!-- Escena de a-frame -->
-    <a-scene escena sonido_ambiente controles-informacion background="color: #FFFFFF" light="defaultLightsEnabled: false" fog="none" animation-timeline__A="timeline:#trucksTimeline; loop:true">
+    <a-scene escena light="defaultLightsEnabled: false" fog="none" animation-timeline__A="timeline:#trucksTimeline; loop:true" vr-mode-ui="enabled: false">
         
         <!-- Assets manager -->
         <a-assets>
@@ -119,14 +119,12 @@
 
         <!-- Camiones -->
         <a-entity id="camion_01" gltf-model="#camion" textura scale="0.5 0.5 0.5" position="-37.5 -0.482 67" 
-            sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
             animation__depart="property: position; dur: 4000;from: -37.5 -0.482 67; to: -50 -0.482 67;loop: 1; autoplay: false" 
             animation__turn="property: rotation; to: 0 -90 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__go="property: position; dur: 10000;from: -50 -0.482 67; to: -50 -0.482 -85;easing: linear;loop: true; autoplay: false">
         </a-entity>
 
         <a-entity id="camion_02" gltf-model="#camion" textura sonido_camion scale="0.5 0.5 0.5" position="-50 -0.482 -90" rotation="0 90 0" 
-            sound__drive="src: #andando; loop: true; autoplay: true;refDistance: 5; volume: 1"
             animation__drive="property: position; dur: 10000;from: -60 -0.482 -85; to: -60 -0.482 75;easing: linear;loop: 1; autoplay: false"
             animation__turning="property: rotation;from: 0 90 0; to: 0 0 0;easing: linear; loop: 1; dur: 2000; autoplay: false"
             animation__park="property: position; dur: 4000;from: -60 -0.482 75; to: -37.5 -0.482 75;loop: 1; easing: easeOutQuad; autoplay: false">
@@ -145,7 +143,7 @@
     <!-- Normal HTML -->
 
     <!-- Pagina de carga -->
-    <!-- <div class="o-landing">
+    <div id="landing" class="o-landing">
         <div class="o-loadingContainer">
             <h1 id="title" class="o-loadingTitle">Tu experiencia se esta cargando</h1>
             <div class="o-loading">
@@ -153,10 +151,10 @@
                 <button id="enterButton" class="o-enterButton" disabled>Comenzar</button>
             </div>
             <div class="o-buttonConatiner">
-                <button class="o-secondaryButton">Volver</button>
+                <button id="backButton" class="o-secondaryButton">Volver</button>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- Cabecera -->
     <div class="o-header">

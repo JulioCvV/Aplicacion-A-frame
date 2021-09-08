@@ -1,8 +1,8 @@
 /** variables relacionadas con el sonido ambiente */
 let sound = document.getElementById('factorySound');
-let soundIcon = document.getElementById('soundIcon'); 
+let soundIcon = document.getElementById('soundIcon');
 let volumeBar = document.getElementById('volumeSlider');
-let isPlaying = false; 
+let isPlaying = false;
 let turnSoundOff = false;
 let volumeVal = null;
 let defaultValue = false;
@@ -25,9 +25,9 @@ let videoConstants = "";
 let isFirstTimePlaying = true;
 /** variables relacionadas con el sonido del video */
 let videoSoundContainer = document.getElementById('videoVolumeControl');
-let videoSoundIcon = document.getElementById('videoSoundIcon'); 
+let videoSoundIcon = document.getElementById('videoSoundIcon');
 let videoVolumeBar = document.getElementById('videoVolumeSlider');
-let isVideoSoundPlaying = false; 
+let isVideoSoundPlaying = false;
 let videoVolumeVal = null;
 let videoSoundDefaultValue = false;
 
@@ -52,7 +52,7 @@ infoPractice = {
     "nombre": "Siete herramientas estadísticas",
     "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
     "producto": "Refresco",
-    "estudiante":"Julio Vallejo Vera"
+    "estudiante": "Julio Vallejo Vera"
 };
 
 /**
@@ -130,13 +130,13 @@ function openVideo(e) {
     if (isFirstTimePlaying == false) {
         video.removeAttribute('autoplay', '')
         video.setAttribute('controls', '')
-        videoSoundContainer.style.display ="none";
+        videoSoundContainer.style.display = "none";
         video.volume = 0.5;
     } else {
         video.setAttribute('autoplay', '')
         // video.playbackRate = 10.0;
         video.volume = 0.5;
-        isVideoSoundPlaying=true;
+        isVideoSoundPlaying = true;
     }
     if (turnSoundOff == false) {
         console.log("en el video: " + turnSoundOff);
@@ -155,7 +155,7 @@ function endText() {
 /**
  * Función para cerrar los dialogos
  */
-function closeInfoCards(){
+function closeInfoCards() {
     information.style.display = "none";
 }
 
@@ -233,7 +233,7 @@ function createPortal() {
         autoplay: 'true',
 
     })
-    portal.setAttribute('class','raycasteable');
+    portal.setAttribute('class', 'raycasteable');
     escena.appendChild(portal)
 }
 
@@ -249,17 +249,26 @@ AFRAME.registerComponent('sonido_ambiente', {
     }
 });
 
-/**
- * Componente que permite llamar a la función que muestra los controles al usuario
- */
-AFRAME.registerComponent('controles-informacion', {
-    init: function () {
-        let el = this.el
-        el.addEventListener('loaded', e => {
-            reveal()
-        })
-    }
-});
+function addTrucksSound() {
+    let camion_01 = document.getElementById('camion_01');
+    let camion_02 = document.getElementById('camion_02');
+
+    camion_01.setAttribute('sound', {
+        src: '#andando',
+        loop: 'true',
+        autoplay: 'true',
+        refDistance: '5',
+        volume: '1'
+    })
+
+    camion_02.setAttribute('sound', {
+        src: '#andando',
+        loop: 'true',
+        autoplay: 'true',
+        refDistance: '5',
+        volume: '1'
+    })
+}
 
 /**
  * Función que permite mostrar los controles al usuario
@@ -369,7 +378,7 @@ function updateSound(e) {
 /**
  * Función que permite desplegar los controles del audio
  */
- function videoVolumeControl() {
+function videoVolumeControl() {
     videoVolumeBar.style.display = 'block'
 }
 
@@ -383,17 +392,19 @@ function quitVideoVolumeControl() {
 /**
  * Función que permite reducir o aumentar el volumen del video a traves del slide
  */
- videoVolumeBar.oninput = function () {
-    videoVolumeVal = videoVolumeBar.value
-    video.volume = videoVolumeVal / 100
-    if (video.volume === 0) {
-        videoSoundIcon.innerHTML = 'volume_off'
-        isVideoSoundPlaying = false;
-        videoSoundDefaultValue = true;
-    } else if (video.volume <= 0.5 && video.volume >= 0) {
-        videoSoundIcon.innerHTML = 'volume_down'
-    } else {
-        videoSoundIcon.innerHTML = 'volume_up'
+if (video) {
+    videoVolumeBar.oninput = function () {
+        videoVolumeVal = videoVolumeBar.value
+        video.volume = videoVolumeVal / 100
+        if (video.volume === 0) {
+            videoSoundIcon.innerHTML = 'volume_off'
+            isVideoSoundPlaying = false;
+            videoSoundDefaultValue = true;
+        } else if (video.volume <= 0.5 && video.volume >= 0) {
+            videoSoundIcon.innerHTML = 'volume_down'
+        } else {
+            videoSoundIcon.innerHTML = 'volume_up'
+        }
     }
 }
 
@@ -417,7 +428,7 @@ function updateVideoSound() {
         videoVolumeBar.value = 0
         videoSoundIcon.innerHTML = 'volume_off'
         isVideoSoundPlaying = false
-    }  else if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == true) {
+    } else if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == true) {
         video.volume = 0.5
         videoVolumeBar.value = video.volume * 100
         videoSoundIcon.innerHTML = 'volume_up'
@@ -425,5 +436,36 @@ function updateVideoSound() {
         videoSoundDefaultValue = false
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    let scene = document.querySelector('a-scene');
+    let landing = document.getElementById('landing');
+    let title = document.getElementById('title')
+    let loader = document.getElementById('loader')
+    let enterButton = document.getElementById('enterButton');
+
+    let path = window.location.pathname;
+    let page = path.split("/").pop();
+    console.log(page);
+
+    if(page=="index.html"){
+
+    scene.addEventListener('loaded', function (e) {
+        setTimeout(() => {
+            loader.style.display = 'none';
+            enterButton.style.position = 'unset';
+            enterButton.removeAttribute("disabled");
+            title.innerHTML = "Tu experiencia se ha cargado"
+        }, 2000);
+    });
+
+    enterButton.addEventListener('click', function (e) {
+        landing.style.display = 'none';
+        playSound();
+        addTrucksSound();
+        reveal();
+    });
+}
+})
 
 
