@@ -20,6 +20,7 @@ let bubble = document.getElementById('taskSign');
 /** variables relacionadas con el video */
 let modal = document.getElementById("videoModal");
 let video = document.getElementById("video");
+let videoContainer = document.getElementById("videoContainer");
 let close = document.getElementById("closeButton");
 let videoConstants = "";
 let isFirstTimePlaying = true;
@@ -33,20 +34,12 @@ let videoSoundDefaultValue = false;
 
 
 videoConstants = {
-    Barra_chocolate: "resources/Videos/Clone_Wars.mp4",
-    Barra_jabon: "resources/Videos/Miss_Minutes_TVA.mp4",
-    Bolsa_arroz: "resources/Videos/The Office Latino.mp4",
-    Pitillo: "resources/Videos/Ted_Lasso.mp4",
-    Refresco: "resources/Videos/Miss_Minutes_TVA.mp4",
+    Barra_chocolate: "resources/Videos/Barra_chocolate.mp4",
+    Barra_jabon: "resources/Videos/Barra_jabon.mp4",
+    Bolsa_arroz: "resources/Videos/Bolsa_arroz.mp4",
+    Pitillo: "resources/Videos/Pitillos.mp4",
+    Refresco: "resources/Videos/Refrescos.mp4",
 };
-
-// videoConstants = {
-//     Barra_chocolate: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Clone_Wars.mp4?raw=true",
-//     Barra_jabon: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Miss_Minutes_TVA.mp4?raw=true",
-//     Bolsa_arroz: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/The%20Office%20Latino.mp4?raw=true",
-//     Pitillo: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Ted_Lasso.mp4?raw=true",
-//     Refresco: "https://github.com/JulioCvV/Aplicacion-A-frame/blob/master/resources/Videos/Miss_Minutes_TVA.mp4?raw=true",
-// };
 
 // infoPractice = {
 //     "nombre": "Siete herramientas estadísticas",
@@ -66,13 +59,6 @@ window.addEventListener("message", (e) => {
     names.innerHTML = infoPractice.estudiante;
     sessionStorage.setItem('userName', infoPractice.estudiante)
 })
-
-/**
- * Función que permite configurar el nombre del usuario en el Header.
- */
-function setUserName() {
-    names.innerHTML = sessionStorage.getItem('userName');
-}
 
 /**
  * Función que permite devolver una respuesta a la aplicación de React una vez el usuario ha terminado
@@ -113,9 +99,10 @@ function nextText() {
  * visualización se agregan los controles para que el usuario pueda avanzar o retroceder el video a su disposición.
  */
 function openVideo(e) {
-    console.log(video.src)
+    
     if (infoPractice.producto === "Refresco") {
         video.src = videoConstants.Refresco
+        videoContainer.style.width="40rem"
     } else if (infoPractice.producto === "Barra_chocolate") {
         video.src = videoConstants.Barra_chocolate;
     } else if (infoPractice.producto === "Barra_jabon") {
@@ -125,21 +112,19 @@ function openVideo(e) {
     } else if (infoPractice.producto === "Pitillo") {
         video.src = videoConstants.Pitillo;
     }
-    console.log(infoPractice.producto)
     modal.style.display = "block";
     if (isFirstTimePlaying == false) {
         video.removeAttribute('autoplay', '')
         video.setAttribute('controls', '')
+        video.setAttribute('controlslist', "nodownload")
         videoSoundContainer.style.display = "none";
         video.volume = 0.5;
     } else {
         video.setAttribute('autoplay', '')
-        // video.playbackRate = 10.0;
         video.volume = 0.5;
         isVideoSoundPlaying = true;
     }
     if (turnSoundOff == false) {
-        console.log("en el video: " + turnSoundOff);
         updateSound(e)
     }
 }
@@ -356,7 +341,7 @@ function updateSound(e) {
         volumeBar.value = 0
         soundIcon.innerHTML = 'volume_off'
         isPlaying = false
-        console.log("entre");
+        
     } else if (isPlaying == false && sound.volume == 0 && defaultValue == true && turnSoundOff == false) {
         sound.volume = 0.5
         volumeBar.value = sound.volume * 100
@@ -440,8 +425,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let path = window.location.pathname;
     let page = path.split("/").pop();
-    console.log(page);
-
     
         scene.addEventListener('loaded', function (e) {
             setTimeout(() => {

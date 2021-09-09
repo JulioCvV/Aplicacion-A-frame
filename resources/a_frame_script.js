@@ -134,6 +134,9 @@ AFRAME.registerComponent('alert', {
     }
 });
 
+/**
+ * Componente para asignar la textura de sombra a los camiones
+ */
 AFRAME.registerComponent('truck_shadow', {
     init: function () {
         let el = this.el;
