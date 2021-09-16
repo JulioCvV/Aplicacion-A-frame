@@ -1,3 +1,5 @@
+/** Variables relacionadas con la creación de la escena */
+let backButton = document.getElementById("backButton");
 /** variables relacionadas con el sonido ambiente */
 let sound = document.getElementById("factorySound");
 let soundIcon = document.getElementById("soundIcon");
@@ -13,6 +15,7 @@ let controlsInfo = null;
 let escena = document.querySelector("a-scene");
 let next = document.getElementById("nextButton");
 let infoPractice = "";
+let practiceName = document.getElementById("welcome-text");
 let description = document.getElementById("practice-description");
 let names = document.getElementById("studentName");
 let namesInside = document.getElementById("studentNameInside");
@@ -22,8 +25,8 @@ let modal = document.getElementById("videoModal");
 let video = document.getElementById("video");
 let videoContainer = document.getElementById("videoContainer");
 let close = document.getElementById("closeButton");
-
 let isFirstTimePlaying = true;
+let url = "";
 /** variables relacionadas con el sonido del video */
 let videoSoundContainer = document.getElementById("videoVolumeControl");
 let videoSoundIcon = document.getElementById("videoSoundIcon");
@@ -31,14 +34,17 @@ let videoVolumeBar = document.getElementById("videoVolumeSlider");
 let isVideoSoundPlaying = false;
 let videoVolumeVal = null;
 let videoSoundDefaultValue = false;
-let url = "";
 
+/** Constantes para identificar los productos */
 const REFRESCOS = "Refrescos";
 const BOLSA_ARROZ = "Bolsa de arroz";
 const BARRA_CHOCOLATE = "Barra de chocolate";
 const BARRA_JABON = "Barra de jabon";
 const PITILLOS = "Pitillos";
 
+/**
+ * Objeto que permite definir la url del video dependiendo del producto
+ */
 const videoConstants = {
   [BARRA_CHOCOLATE]: "resources/Videos/Barra_chocolate.mp4",
   [BARRA_JABON]: "resources/Videos/Barra_jabon.mp4",
@@ -47,16 +53,19 @@ const videoConstants = {
   [REFRESCOS]: "resources/Videos/Refrescos.mp4",
 };
 
+/**
+ * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
+ */
+backButton.addEventListener('click', function(){
+  window.parent.postMessage("Abort", "http://localhost:3000")
+})
+
+/**
+ * Función para indicarle a la ventana padre que ya ha cargado la aplicación
+ */
 window.onload = function () {
   window.parent.postMessage("openedReady", "http://localhost:3000");
 };
-
-// infoPractice = {
-//     "nombre": "Siete herramientas estadísticas",
-//     "descripcion": "Inspecciona cada uno de los productos y aplica las herramientas solicitadas",
-//     "producto": "Refresco",
-//     "estudiante": "Julio Vallejo Vera"
-// };
 
 /**
  * Función que permite obtener, desde la aplicación de React, la información correspondiente al nombre del usuario y la práctica asignada,
@@ -65,10 +74,8 @@ window.onload = function () {
  */
 window.addEventListener("message", (e) => {
   if (e.origin !== "http://localhost:3000") return;
-  console.log("DATOS", e.data);
   infoPractice = JSON.parse(e.data);
-  console.log(infoPractice.url);
-  names.innerHTML = infoPractice.estudiante;
+  names.innerHTML = `Ing. ${infoPractice.estudiante}`;
   sessionStorage.setItem("userName", infoPractice.estudiante);
   url = infoPractice.url;
   sessionStorage.setItem("url", url);
@@ -86,6 +93,7 @@ function responseToParent() {
  * Función que permite visualizar los dialogos y avanzar entre estos
  */
 function nextText() {
+  practiceName.innerHTML =`Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`
   description.innerHTML = infoPractice.descripcion;
   let infoCards = ["info-01", "info-02", "info-03", "info-04"];
   let elements = [];
@@ -130,7 +138,6 @@ function openVideo(e) {
   } else {
     video.setAttribute("autoplay", "");
     video.volume = 0.5;
-    video.playbackRate = 10;
     isVideoSoundPlaying = true;
   }
   if (turnSoundOff == false) {
@@ -177,7 +184,6 @@ function closeVideo(e) {
     fisrtClick = true;
     isFirstTimePlaying = false;
   }
-  console.log("al cerrar: " + turnSoundOff);
   if (turnSoundOff == false) {
     updateSound(e);
   }
@@ -318,19 +324,13 @@ volumeBar.oninput = function () {
  * Función que permite actualizar el volumen
  */
 function updateSound(e) {
-  console.log(e.id);
   if (e.id == "soundButton" && turnSoundOff == false) {
     turnSoundOff = true;
   } else {
     turnSoundOff = false;
   }
 
-  if (
-    isPlaying == false &&
-    sound.volume == 0 &&
-    defaultValue == false &&
-    turnSoundOff == false
-  ) {
+  if (isPlaying == false && sound.volume == 0 && defaultValue == false && turnSoundOff == false) {
     sound.volume = volumeVal / 100;
     volumeBar.value = volumeVal;
     if (sound.volume <= 0.5 && sound.volume >= 0) {
@@ -339,34 +339,19 @@ function updateSound(e) {
       soundIcon.innerHTML = "volume_up";
     }
     isPlaying = true;
-  } else if (
-    isPlaying == true &&
-    sound.volume != 0 &&
-    defaultValue == false &&
-    turnSoundOff == true
-  ) {
+  } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == true) {
     sound.volume = 0;
     volumeVal = volumeBar.value;
     volumeBar.value = 0;
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
-  } else if (
-    isPlaying == true &&
-    sound.volume != 0 &&
-    defaultValue == false &&
-    turnSoundOff == false
-  ) {
+  } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == false) {
     sound.volume = 0;
     volumeVal = volumeBar.value;
     volumeBar.value = 0;
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
-  } else if (
-    isPlaying == false &&
-    sound.volume == 0 &&
-    defaultValue == true &&
-    turnSoundOff == false
-  ) {
+  } else if (isPlaying == false && sound.volume == 0 && defaultValue == true && turnSoundOff == false) {
     sound.volume = 0.5;
     volumeBar.value = sound.volume * 100;
     soundIcon.innerHTML = "volume_up";
@@ -412,11 +397,7 @@ if (video) {
  * Función que permite actualizar el volumen delvideo
  */
 function updateVideoSound() {
-  if (
-    isVideoSoundPlaying == false &&
-    video.volume == 0 &&
-    videoSoundDefaultValue == false
-  ) {
+  if (isVideoSoundPlaying == false &&video.volume == 0 &&videoSoundDefaultValue == false) {
     video.volume = videoVolumeVal / 100;
     videoVolumeBar.value = videoVolumeVal;
     if (video.volume <= 0.5 && video.volume >= 0) {
@@ -425,21 +406,13 @@ function updateVideoSound() {
       videoSoundIcon.innerHTML = "volume_up";
     }
     isVideoSoundPlaying = true;
-  } else if (
-    isVideoSoundPlaying == true &&
-    video.volume != 0 &&
-    videoSoundDefaultValue == false
-  ) {
+  } else if (isVideoSoundPlaying == true &&video.volume != 0 &&videoSoundDefaultValue == false) {
     video.volume = 0;
     videoVolumeVal = videoVolumeBar.value;
     videoVolumeBar.value = 0;
     videoSoundIcon.innerHTML = "volume_off";
     isVideoSoundPlaying = false;
-  } else if (
-    isVideoSoundPlaying == false &&
-    video.volume == 0 &&
-    videoSoundDefaultValue == true
-  ) {
+  } else if (isVideoSoundPlaying == false &&video.volume == 0 &&videoSoundDefaultValue == true) {
     video.volume = 0.5;
     videoVolumeBar.value = video.volume * 100;
     videoSoundIcon.innerHTML = "volume_up";

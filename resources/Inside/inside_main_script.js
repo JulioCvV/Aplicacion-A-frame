@@ -13,7 +13,7 @@ let url = sessionStorage.getItem("url");
  * Función que permite configurar el nombre del usuario en el Header.
  */
 function setUserName() {
-  names.innerHTML = sessionStorage.getItem("userName");
+  names.innerHTML = `Ing. ${sessionStorage.getItem("userName")}`;
 }
 
 /**

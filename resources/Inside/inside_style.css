@@ -43,7 +43,7 @@ body{
 .o-header:hover{
   background-color: var(--alternative-color-4);
 }
-.o-header h1{
+.o-header h2{
   margin-left: 0.625rem;
 }
 .o-optionsBtns{
