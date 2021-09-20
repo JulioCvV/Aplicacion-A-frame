@@ -48,11 +48,11 @@ body{
 }
 .o-optionsBtns{
   display: flex;
+  margin: 0 0.625rem 0 0; 
 }
 .o-sound{
   display: flex;
   align-items: center;
-  margin-right: 0.625rem;
 }
 .o-volumeSlider{
   display: none;

@@ -137,11 +137,11 @@ body {
 }
 .o-optionsBtns {
   display: flex;
+  margin: 0 0.625rem 0 0; 
 }
 .o-sound {
   display: flex;
   align-items: center;
-  margin-right: 0.625rem;
 }
 .o-volumeSlider {
   display: none;
@@ -210,18 +210,10 @@ body {
   align-items: flex-end;
 }
 @keyframes showControls {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% {opacity: 0;}
+  25% {opacity: 1;}
+  75% {opacity: 1;}
+  100% {opacity: 0;}
 }
 .o-mouseMove {
   margin: 1rem 0 0 0;
@@ -234,12 +226,8 @@ body {
   position: relative;
 }
 @keyframes move {
-  0% {
-    left: -2rem;
-  }
-  100% {
-    left: 2rem;
-  }
+  0% {left: -2rem;}
+  100% {left: 2rem;}
 }
 /* Controls information end */
 
@@ -249,7 +237,6 @@ body {
   position: absolute;
   z-index: 1;
   bottom: 15%;
-  /* left: 50%; */
 }
 @keyframes show {
   0% {
@@ -296,6 +283,7 @@ div h3 {
 .o-desitionButtons {
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 .o-principal {
   margin: 1rem 0 0 0;
@@ -314,27 +302,6 @@ div h3 {
 }
 .o-principal:hover {
   background-color: var(--alternative-color-1);
-  transform: scale(1.1);
-}
-.o-secundario {
-  margin: 1rem 0.75rem 0 0;
-  width: 10rem;
-  font-family: var(--title-font);
-  font-weight: bold;
-  font-size: 1.125rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  border-radius: 4rem;
-  border: 2px solid var(--alternative-color-1);
-  color: var(--alternative-color-1);
-  background-color: var(--alternative-color-2);
-  cursor: pointer;
-  align-self: center;
-  transition: 100ms;
-}
-.o-secundario:hover {
-  background-color: var(--alternative-color-1);
-  color: var(--alternative-color-2);
-  transform: scale(1.1);
 }
 .o-principal:disabled {
   background: #c4c4c4;
@@ -385,8 +352,7 @@ div h3 {
   opacity: 1;
   transition: 1s;
 }
-.o-close,
-.o-crcButton {
+.o-close, .o-crcButton {
   margin: 0 0 0 1rem;
   width: 2rem;
   height: 2rem;
@@ -398,8 +364,7 @@ div h3 {
   color: var(--alternative-color-1);
   transition: 100ms;
 }
-.o-close:hover,
-.o-crcButton:hover {
+.o-close:hover,.o-crcButton:hover {
   color: var(--alternative-color-2);
   background-color: var(--alternative-color-1);
   transform: scale(1.2);

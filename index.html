@@ -153,7 +153,7 @@
                 <button id="enterButton" class="o-enterButton" disabled>Comenzar</button>
             </div>
             <div class="o-buttonConatiner">
-                <button id="backButton" class="o-secondaryButton">Volver</button>
+                <button id="backButton" class="o-secondaryButton" onclick="exitVirtualEnvironment()">Volver</button>
             </div>
         </div>
     </div>
@@ -163,13 +163,16 @@
         <h2 id="studentName">Aplicación</h2>
         <div class="o-optionsBtns">
             <div id="infoButton" class="o-crcButton" onclick="reveal()" >
-                <span id="infoIcon" class="material-icons o-closed" style="font-size:24px;">help_outline</span>
+                <span id="infoIcon" class="material-icons" style="font-size:24px;">help_outline</span>
             </div>
             <div class="o-sound" onmouseover="volumeControl()" onmouseout="quitVolumeControl()">
                 <div id="soundButton" class="o-crcButton" onclick="updateSound(this)" >
-                    <span id="soundIcon" class="material-icons o-closed" style="font-size:24px;">volume_off</span>
+                    <span id="soundIcon" class="material-icons" style="font-size:24px;">volume_off</span>
                 </div>
                 <input id="volumeSlider" type="range" min="0" max="100" value="50" class="o-volumeSlider">
+            </div>
+            <div id="exitButton" class="o-crcButton" onclick="exitVirtualEnvironment()">
+                <span id="exitIcon" class="material-icons" style="font-size:24px;">exit_to_app</span>
             </div>
         </div>
 
@@ -240,7 +243,7 @@
             </div>
             <p>Para un mejor entendimiento del proceso, visualiza el video a continuación</p>
             <div class="o-desitionButtons">
-                <button class="o-secundario" onclick="openVideo(this)">Ver video</button>
+                <button class="o-secondaryButton" onclick="openVideo(this)">Ver video</button>
                 <button id="nextButton" class="o-principal" onclick="nextText()" disabled>Continuar</button>
             </div>
         </div>

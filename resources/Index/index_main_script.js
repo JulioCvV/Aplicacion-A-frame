@@ -1,5 +1,3 @@
-/** Variables relacionadas con la creación de la escena */
-let backButton = document.getElementById("backButton");
 /** variables relacionadas con el sonido ambiente */
 let sound = document.getElementById("factorySound");
 let soundIcon = document.getElementById("soundIcon");
@@ -56,9 +54,9 @@ const videoConstants = {
 /**
  * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
  */
-backButton.addEventListener('click', function(){
+function exitVirtualEnvironment(){
   window.parent.postMessage("Abort", "http://localhost:3000")
-})
+}
 
 /**
  * Función para indicarle a la ventana padre que ya ha cargado la aplicación
@@ -123,11 +121,7 @@ function nextText() {
 function openVideo(e) {
   let product = videoConstants[infoPractice.producto];
   video.src = product;
-
-  infoPractice.producto === REFRESCOS
-    ? (videoContainer.style.width = "40rem")
-    : "";
-
+  infoPractice.producto === REFRESCOS?(videoContainer.style.width = "40rem"): "";
   modal.style.display = "block";
   if (isFirstTimePlaying == false) {
     video.removeAttribute("autoplay", "");

@@ -25,6 +25,13 @@ function responseToParent() {
 }
 
 /**
+ * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
+ */
+function exitVirtualEnvironment(){
+  window.parent.postMessage("Abort", "http://localhost:3000")
+}
+
+/**
  * Función que permite mostrar los controles al usuario
  */
 function reveal() {
