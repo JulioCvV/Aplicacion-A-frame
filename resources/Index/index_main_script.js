@@ -74,6 +74,7 @@ window.addEventListener("message", (e) => {
   if (e.origin !== "http://localhost:3000") return;
   infoPractice = JSON.parse(e.data);
   names.innerHTML = `Ing. ${infoPractice.estudiante}`;
+  practiceName.innerHTML =`Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`
   sessionStorage.setItem("userName", infoPractice.estudiante);
   url = infoPractice.url;
   sessionStorage.setItem("url", url);
@@ -91,7 +92,6 @@ function responseToParent() {
  * Función que permite visualizar los dialogos y avanzar entre estos
  */
 function nextText() {
-  practiceName.innerHTML =`Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`
   description.innerHTML = infoPractice.descripcion;
   let infoCards = ["info-01", "info-02", "info-03", "info-04"];
   let elements = [];
