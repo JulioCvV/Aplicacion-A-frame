@@ -20,10 +20,10 @@
 </head>
 <body>
     <!-- Escena de a-frame -->
-    <a-scene escena light="defaultLightsEnabled: false" fog="none" animation-timeline__A="timeline:#trucksTimeline; loop:true" vr-mode-ui="enabled: false">
+    <a-scene escena light="defaultLightsEnabled: false" fog="none" animation-timeline__A="timeline:#trucksTimeline; loop:true" vr-mode-ui="enabled: true">
         
         <!-- Assets manager -->
-        <a-assets>
+        <a-assets timeout="15000">
             <!-- Modelos -->
             <a-asset-item id="player" src="resources/Models/Avatar_animado.glb"></a-asset-item>
             <a-asset-item id="npc" src="resources/Models/NPC.glb"></a-asset-item>
