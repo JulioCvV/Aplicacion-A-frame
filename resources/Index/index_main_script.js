@@ -55,14 +55,14 @@ const videoConstants = {
  * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
  */
 function exitVirtualEnvironment() {
-  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app/");
+  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app");
 }
 
 /**
  * Función para indicarle a la ventana padre que ya ha cargado la aplicación
  */
 window.onload = function () {
-  window.parent.postMessage("openedReady", "https://trabajo-grado.vercel.app/");
+  window.parent.postMessage("openedReady", "https://trabajo-grado.vercel.app");
 };
 
 /**
@@ -71,10 +71,10 @@ window.onload = function () {
  * del usuario en el sessionStorage para ser posteriormente usado en la otra escena.
  */
 window.addEventListener("message", (e) => {
-  if (e.origin !== "https://trabajo-grado.vercel.app/") return;
+  if (e.origin !== "https://trabajo-grado.vercel.app") return;
   infoPractice = JSON.parse(e.data);
   names.innerHTML = `Ing. ${infoPractice.estudiante}`;
-  practiceName.innerHTML =`Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`
+  practiceName.innerHTML = `Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`;
   sessionStorage.setItem("userName", infoPractice.estudiante);
   url = infoPractice.url;
   sessionStorage.setItem("url", url);

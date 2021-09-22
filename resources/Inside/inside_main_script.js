@@ -21,14 +21,14 @@ function setUserName() {
  * el recorrido por el entorno virtual.
  */
 function responseToParent() {
-  window.parent.postMessage(url, "https://trabajo-grado.vercel.app/");
+  window.parent.postMessage(url, "https://trabajo-grado.vercel.app");
 }
 
 /**
  * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
  */
 function exitVirtualEnvironment() {
-  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app/");
+  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app");
 }
 
 /**
