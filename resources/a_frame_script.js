@@ -11,65 +11,7 @@ AFRAME.registerComponent("escena", {
     let aRenderer = this.el.renderer;
     aRenderer.antialias = true;
     aRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    // aRenderer.physicallyCorrectLights = true
     aRenderer.outputEncoding = THREE.sRGBEncoding;
-
-    var assetItems = document.querySelectorAll(
-      "a-assets a-asset-item,a-assets img,a-assets audio,a-assets video"
-    );
-
-    this.totalAssetCount = assetItems.length;
-    this.watchPreloadProgress(assetItems);
-  },
-
-  update: function (oldData) {},
-
-  watchPreloadProgress: function (assetItems) {
-    for (let a = 0; a < assetItems.length; a++) {
-      let eventName;
-
-      switch (assetItems[a].nodeName.toLowerCase()) {
-        case "a-asset-item":
-          eventName = "loaded";
-          break;
-        case "img":
-          eventName = "load";
-          break;
-        case "audio":
-        case "video":
-          eventName = "loadeddata";
-          break;
-      }
-
-      assetItems[a].addEventListener(
-        eventName,
-        function (e) {
-          this.loadedAssetCount++;
-          console.log(this.loadedAssetCount);
-          if (this.data.debug) {
-            console.log(
-              "Loaded " +
-                this.loadedAssetCount +
-                "/" +
-                this.totalAssetCount +
-                " asset items"
-            );
-          }
-          this.onAssetLoaded();
-        }.bind(this)
-      );
-    }
-  },
-
-  onAssetLoaded: function () {
-    if (this.loadedAssetCount === this.totalAssetCount) {
-      console.log("carga completa");
-    } else {
-      let percentage = Math.floor(
-        (this.loadedAssetCount / this.totalAssetCount) * 100
-      );
-      console.log(percentage);
-    }
   },
 });
 
@@ -86,19 +28,11 @@ AFRAME.registerComponent("info-sign", {
       let signAlphaTexture;
       const textureLoader = new THREE.TextureLoader();
       if (el.id == "taskSign") {
-        signTexture = textureLoader.load(
-          "resources/Textures/Office_Scene/Task_icon.png"
-        );
-        signAlphaTexture = textureLoader.load(
-          "resources/Textures/Office_Scene/Task_icon_alpha.png"
-        );
+        signTexture = textureLoader.load("resources/Textures/Office_Scene/Task_icon.png");
+        signAlphaTexture = textureLoader.load("resources/Textures/Office_Scene/Task_icon_alpha.png");
       } else {
-        signTexture = textureLoader.load(
-          "resources/Textures/Outdoors_Scene/Chat_icon.png"
-        );
-        signAlphaTexture = textureLoader.load(
-          "resources/Textures/Outdoors_Scene/Chat_icon_alpha.png"
-        );
+        signTexture = textureLoader.load("resources/Textures/Outdoors_Scene/Chat_icon.png");
+        signAlphaTexture = textureLoader.load("resources/Textures/Outdoors_Scene/Chat_icon_alpha.png");
       }
       signTexture.encoding = THREE.sRGBEncoding;
       const signMaterial = new THREE.MeshBasicMaterial();
@@ -135,12 +69,8 @@ AFRAME.registerComponent("alert", {
       let alertTexture;
       let alertAlphaTexture;
       const textureLoader = new THREE.TextureLoader();
-      alertTexture = textureLoader.load(
-        "resources/Textures/Outdoors_Scene/Alert_icon.png"
-      );
-      alertAlphaTexture = textureLoader.load(
-        "resources/Textures/Outdoors_Scene/Alert_icon_alpha.png"
-      );
+      alertTexture = textureLoader.load("resources/Textures/Outdoors_Scene/Alert_icon.png");
+      alertAlphaTexture = textureLoader.load("resources/Textures/Outdoors_Scene/Alert_icon_alpha.png");
       alertTexture.encoding = THREE.sRGBEncoding;
       const alertMaterial = new THREE.MeshBasicMaterial();
       alertMaterial.map = alertTexture;
@@ -363,13 +293,7 @@ AFRAME.registerComponent("player_controls", {
     //      up(y) direction: [  0,  1,  0 ]
     // multiply each by (maximum) movement amount and percentages (how much to move in that direction)
 
-    this.moveVector
-      .set(
-        -s * this.movePercent.z + c * this.movePercent.x,
-        1 * this.movePercent.y,
-        -c * this.movePercent.z - s * this.movePercent.x
-      )
-      .multiplyScalar(moveAmount);
+    this.moveVector.set(-s * this.movePercent.z + c * this.movePercent.x,1 * this.movePercent.y,-c * this.movePercent.z - s * this.movePercent.x).multiplyScalar(moveAmount);
 
     this.el.object3D.position.add(this.moveVector);
   },
@@ -403,19 +327,10 @@ AFRAME.registerComponent("textura", {
     el.addEventListener("model-loaded", (e) => {
       let tree3D = el.getObject3D("mesh");
       let BakedTexture;
-      if (
-        el.id == "camion_01" ||
-        el.id == "camion_02" ||
-        el.id == "camion_03" ||
-        el.id == "camion_04"
-      ) {
-        BakedTexture = new THREE.TextureLoader().load(
-          `resources/Textures/Outdoors_Scene/camion_bake.jpg`
-        );
+      if (el.id == "camion_01" ||el.id == "camion_02" ||el.id == "camion_03" ||el.id == "camion_04") {
+        BakedTexture = new THREE.TextureLoader().load(`resources/Textures/Outdoors_Scene/camion_bake.jpg`);
       } else {
-        BakedTexture = new THREE.TextureLoader().load(
-          `resources/Textures/Outdoors_Scene/${el.id}_bake.jpg`
-        );
+        BakedTexture = new THREE.TextureLoader().load(`resources/Textures/Outdoors_Scene/${el.id}_bake.jpg`);
       }
       BakedTexture.flipY = false;
       BakedTexture.encoding = THREE.sRGBEncoding;
@@ -443,23 +358,10 @@ AFRAME.registerComponent("textura-oficina", {
     el.addEventListener("model-loaded", (e) => {
       let tree3D = el.getObject3D("mesh");
       let BakedTexture;
-      if (
-        el.id == "pitillo_02" ||
-        el.id == "pitillo_03" ||
-        el.id == "pitillo_04" ||
-        el.id == "pitillo_05" ||
-        el.id == "pitillo_06" ||
-        el.id == "pitillo_07" ||
-        el.id == "pitillo_08" ||
-        el.id == "pitillo_09"
-      ) {
-        BakedTexture = new THREE.TextureLoader().load(
-          `resources/Textures/Office_Scene/pitillos_bake.jpg`
-        );
+      if (el.id == "pitillo_02" ||el.id == "pitillo_03" ||el.id == "pitillo_04" ||el.id == "pitillo_05" ||el.id == "pitillo_06" ||el.id == "pitillo_07" ||el.id == "pitillo_08" ||el.id == "pitillo_09") {
+        BakedTexture = new THREE.TextureLoader().load(`resources/Textures/Office_Scene/pitillos_bake.jpg`);
       } else {
-        BakedTexture = new THREE.TextureLoader().load(
-          `resources/Textures/Office_Scene/${el.id}_bake.jpg`
-        );
+        BakedTexture = new THREE.TextureLoader().load(`resources/Textures/Office_Scene/${el.id}_bake.jpg`);
       }
       BakedTexture.flipY = false;
       BakedTexture.encoding = THREE.sRGBEncoding;

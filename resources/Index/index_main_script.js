@@ -87,7 +87,12 @@ window.addEventListener("message", (e) => {
  */
 function nextText() {
   description.innerHTML = infoPractice.descripcion;
-  let infoCards = ["info-01", "info-02", "info-03", "info-04"];
+  let infoCards = [];
+  if (infoPractice.corte === 1) {
+    infoCards = ["info-01", "info-02", "info-03", "info-04"];
+  } else {
+    infoCards = ["info-01", "info-02", "info-04"];
+  }
   let elements = [];
   for (let i = 0; i < infoCards.length; i++) {
     elements.push(document.getElementById(infoCards[i]));
@@ -115,9 +120,7 @@ function nextText() {
 function openVideo(e) {
   let product = videoConstants[infoPractice.producto];
   video.src = product;
-  infoPractice.producto === REFRESCOS
-    ? (videoContainer.style.width = "40rem")
-    : "";
+  infoPractice.producto === REFRESCOS ? (videoContainer.style.width = "40rem") : "";
   modal.style.display = "block";
   if (isFirstTimePlaying == false) {
     video.removeAttribute("autoplay", "");
@@ -320,12 +323,7 @@ function updateSound(e) {
     turnSoundOff = false;
   }
 
-  if (
-    isPlaying == false &&
-    sound.volume == 0 &&
-    defaultValue == false &&
-    turnSoundOff == false
-  ) {
+  if (isPlaying == false && sound.volume == 0 && defaultValue == false && turnSoundOff == false) {
     sound.volume = volumeVal / 100;
     volumeBar.value = volumeVal;
     if (sound.volume <= 0.5 && sound.volume >= 0) {
@@ -334,34 +332,19 @@ function updateSound(e) {
       soundIcon.innerHTML = "volume_up";
     }
     isPlaying = true;
-  } else if (
-    isPlaying == true &&
-    sound.volume != 0 &&
-    defaultValue == false &&
-    turnSoundOff == true
-  ) {
+  } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == true) {
     sound.volume = 0;
     volumeVal = volumeBar.value;
     volumeBar.value = 0;
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
-  } else if (
-    isPlaying == true &&
-    sound.volume != 0 &&
-    defaultValue == false &&
-    turnSoundOff == false
-  ) {
+  } else if (isPlaying == true && sound.volume != 0 && defaultValue == false && turnSoundOff == false) {
     sound.volume = 0;
     volumeVal = volumeBar.value;
     volumeBar.value = 0;
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
-  } else if (
-    isPlaying == false &&
-    sound.volume == 0 &&
-    defaultValue == true &&
-    turnSoundOff == false
-  ) {
+  } else if (isPlaying == false && sound.volume == 0 && defaultValue == true && turnSoundOff == false) {
     sound.volume = 0.5;
     volumeBar.value = sound.volume * 100;
     soundIcon.innerHTML = "volume_up";
@@ -407,11 +390,7 @@ if (video) {
  * Función que permite actualizar el volumen delvideo
  */
 function updateVideoSound() {
-  if (
-    isVideoSoundPlaying == false &&
-    video.volume == 0 &&
-    videoSoundDefaultValue == false
-  ) {
+  if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == false) {
     video.volume = videoVolumeVal / 100;
     videoVolumeBar.value = videoVolumeVal;
     if (video.volume <= 0.5 && video.volume >= 0) {
@@ -420,21 +399,13 @@ function updateVideoSound() {
       videoSoundIcon.innerHTML = "volume_up";
     }
     isVideoSoundPlaying = true;
-  } else if (
-    isVideoSoundPlaying == true &&
-    video.volume != 0 &&
-    videoSoundDefaultValue == false
-  ) {
+  } else if (isVideoSoundPlaying == true && video.volume != 0 && videoSoundDefaultValue == false) {
     video.volume = 0;
     videoVolumeVal = videoVolumeBar.value;
     videoVolumeBar.value = 0;
     videoSoundIcon.innerHTML = "volume_off";
     isVideoSoundPlaying = false;
-  } else if (
-    isVideoSoundPlaying == false &&
-    video.volume == 0 &&
-    videoSoundDefaultValue == true
-  ) {
+  } else if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == true) {
     video.volume = 0.5;
     videoVolumeBar.value = video.volume * 100;
     videoSoundIcon.innerHTML = "volume_up";
