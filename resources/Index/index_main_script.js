@@ -32,6 +32,7 @@ let videoVolumeBar = document.getElementById("videoVolumeSlider");
 let isVideoSoundPlaying = false;
 let videoVolumeVal = null;
 let videoSoundDefaultValue = false;
+const domain = "https://sem.vercel.app";
 
 /** Constantes para identificar los productos */
 const REFRESCOS = "Refrescos";
@@ -55,14 +56,14 @@ const videoConstants = {
  * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
  */
 function exitVirtualEnvironment() {
-  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app");
+  window.parent.postMessage("Abort", domain);
 }
 
 /**
  * Función para indicarle a la ventana padre que ya ha cargado la aplicación
  */
 window.onload = function () {
-  window.parent.postMessage("openedReady", "https://trabajo-grado.vercel.app");
+  window.parent.postMessage("openedReady", domain);
 };
 
 /**
@@ -71,7 +72,7 @@ window.onload = function () {
  * del usuario en el sessionStorage para ser posteriormente usado en la otra escena.
  */
 window.addEventListener("message", (e) => {
-  if (e.origin !== "https://trabajo-grado.vercel.app") return;
+  if (e.origin !== domain) return;
   infoPractice = JSON.parse(e.data);
   names.innerHTML = `Ing. ${infoPractice.estudiante}`;
   practiceName.innerHTML = `Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`;
@@ -80,14 +81,6 @@ window.addEventListener("message", (e) => {
   sessionStorage.setItem("url", url);
   practiceName.innerHTML = `Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`;
 });
-
-/**
- * Función que permite devolver una respuesta a la aplicación de React una vez el usuario ha terminado
- * el recorrido por el entorno virtual.
- */
-function responseToParent() {
-  window.parent.postMessage("ya, saqueme de aqui!", "https://mexp.netlify.app");
-}
 
 /**
  * Función que permite visualizar los dialogos y avanzar entre estos
@@ -460,9 +453,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let title = document.getElementById("title");
   let loader = document.getElementById("loader");
   let enterButton = document.getElementById("enterButton");
-
-  let path = window.location.pathname;
-  let page = path.split("/").pop();
 
   scene.addEventListener("loaded", function (e) {
     setTimeout(() => {

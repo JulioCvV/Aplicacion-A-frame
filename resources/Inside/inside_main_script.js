@@ -8,6 +8,7 @@ let defaultValue = false;
 let controlsInfo = null;
 let names = document.getElementById("studentName");
 let url = sessionStorage.getItem("url");
+const domain = "https://sem.vercel.app";
 
 /**
  * Función que permite configurar el nombre del usuario en el Header.
@@ -21,14 +22,14 @@ function setUserName() {
  * el recorrido por el entorno virtual.
  */
 function responseToParent() {
-  window.parent.postMessage(url, "https://trabajo-grado.vercel.app");
+  window.parent.postMessage(url, domain);
 }
 
 /**
  * Función del boton "Volver" que permite indicarle a la ventana padre que el usuario no desea iniciar el entorno
  */
 function exitVirtualEnvironment() {
-  window.parent.postMessage("Abort", "https://trabajo-grado.vercel.app");
+  window.parent.postMessage("Abort", domain);
 }
 
 /**
