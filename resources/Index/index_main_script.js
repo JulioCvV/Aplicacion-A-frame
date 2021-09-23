@@ -7,7 +7,7 @@ let turnSoundOff = false;
 let volumeVal = null;
 let defaultValue = false;
 /** variables relacionadas con la información de la escena */
-let showDisplay = [1, 0, 0, 0];
+let showDisplay;
 let information = document.getElementById("container");
 let controlsInfo = null;
 let escena = document.querySelector("a-scene");
@@ -18,6 +18,7 @@ let description = document.getElementById("practice-description");
 let names = document.getElementById("studentName");
 let namesInside = document.getElementById("studentNameInside");
 let bubble = document.getElementById("taskSign");
+let portalCounter = 1;
 /** variables relacionadas con el video */
 let modal = document.getElementById("videoModal");
 let video = document.getElementById("video");
@@ -40,6 +41,7 @@ const BOLSA_ARROZ = "Bolsa de arroz";
 const BARRA_CHOCOLATE = "Barra de chocolate";
 const BARRA_JABON = "Barra de jabon";
 const PITILLOS = "Pitillos";
+
 
 /**
  * Objeto que permite definir la url del video dependiendo del producto
@@ -80,6 +82,11 @@ window.addEventListener("message", (e) => {
   url = infoPractice.url;
   sessionStorage.setItem("url", url);
   practiceName.innerHTML = `Bienvenido ingenier@, el día de hoy la práctica se llama ${infoPractice.nombre}`;
+  if(infoPractice.corte === 1){
+    showDisplay = [1, 0, 0, 0];
+  }else{
+    showDisplay = [1, 0, 0];
+  }
 });
 
 /**
@@ -143,6 +150,10 @@ function openVideo(e) {
  */
 function endText() {
   information.style.display = "none";
+  if (portalCounter === 1) {
+    createPortal();
+    portalCounter -= 1;
+  }
   nextText();
 }
 
@@ -173,7 +184,6 @@ function closeVideo(e) {
   let fisrtClick = false;
   next.removeAttribute("disabled");
   if (isFirstTimePlaying && fisrtClick == false) {
-    createPortal();
     fisrtClick = true;
     isFirstTimePlaying = false;
   }
