@@ -286,7 +286,7 @@ function hide() {
 function playSound() {
   if (isPlaying == false) {
     sound.play();
-    sound.volume = 0.5;
+    sound.volume = 0.3;
     soundIcon.innerHTML = "volume_up";
     isPlaying = true;
   }
