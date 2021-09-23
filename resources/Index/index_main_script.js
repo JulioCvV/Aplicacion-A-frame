@@ -128,7 +128,6 @@ function openVideo(e) {
   } else {
     video.setAttribute("autoplay", "");
     video.volume = 0.5;
-    video.playbackRate = 10;
     isVideoSoundPlaying = true;
   }
   if (turnSoundOff == false) {
