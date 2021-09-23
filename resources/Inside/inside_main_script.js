@@ -8,7 +8,7 @@ let defaultValue = false;
 let controlsInfo = null;
 let names = document.getElementById("studentName");
 let url = sessionStorage.getItem("url");
-const domain = "https://sem.vercel.app";
+const domain = "https://sem-exp.netlify.app";
 
 /**
  * Función que permite configurar el nombre del usuario en el Header.

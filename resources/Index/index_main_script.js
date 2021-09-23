@@ -32,7 +32,7 @@ let videoVolumeBar = document.getElementById("videoVolumeSlider");
 let isVideoSoundPlaying = false;
 let videoVolumeVal = null;
 let videoSoundDefaultValue = false;
-const domain = "https://sem.vercel.app";
+const domain = "https://sem-exp.netlify.app";
 
 /** Constantes para identificar los productos */
 const REFRESCOS = "Refrescos";
