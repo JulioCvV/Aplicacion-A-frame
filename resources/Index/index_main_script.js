@@ -7,6 +7,7 @@ let turnSoundOff = false;
 let volumeVal = null;
 let defaultValue = false;
 /** variables relacionadas con la información de la escena */
+let instruction = document.getElementById("instruction");
 let showDisplay;
 let information = document.getElementById("container");
 let controlsInfo = null;
@@ -277,7 +278,20 @@ function reveal() {
 function hide() {
   setTimeout(() => {
     controlsInfo.style.display = "none";
-  }, 10000);
+    instruction.style.display = "flex";
+    hideInstruction()
+  }, 5000);
+  
+}
+
+/**
+ * Función que remueve las instrucciones de la interfaz despues de 5 segundos
+ */
+ function hideInstruction() {
+  setTimeout(() => {
+    instruction.style.display = "none";
+  }, 5000);
+  
 }
 
 /**
@@ -286,7 +300,7 @@ function hide() {
 function playSound() {
   if (isPlaying == false) {
     sound.play();
-    sound.volume = 0.3;
+    sound.volume = 0.2;
     soundIcon.innerHTML = "volume_up";
     isPlaying = true;
   }
@@ -316,6 +330,7 @@ volumeBar.oninput = function () {
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
     defaultValue = true;
+    turnSoundOff = true;
   } else if (sound.volume <= 0.5 && sound.volume >= 0) {
     soundIcon.innerHTML = "volume_down";
   } else {
@@ -439,6 +454,7 @@ document.addEventListener("DOMContentLoaded", function () {
       loader.style.display = "none";
       enterButton.style.position = "unset";
       enterButton.removeAttribute("disabled");
+      enterButton.innerHTML = "Comenzar";
       title.innerHTML = "Tu experiencia se ha cargado";
     }, 2000);
   });

@@ -177,7 +177,7 @@ body {
   position: absolute;
   bottom: 10%;
   z-index: 1;
-  animation: showControls 10s ease-in-out;
+  animation: showControls 5s ease-in-out;
 }
 .o-controlsInfo p {
   margin: 0 0.5rem;
@@ -228,6 +228,22 @@ body {
 @keyframes move {
   0% {left: -2rem;}
   100% {left: 2rem;}
+}
+.o-instruction{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--alternative-color-4);
+  color: var(--alternative-color-2);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  width: 15rem;
+  height: 2rem;
+  font-family: var(--text-font);
+  position: absolute;
+  bottom: 10%;
+  z-index: 1;
+  animation: showControls 5s ease-in-out;
 }
 /* Controls information end */
 
