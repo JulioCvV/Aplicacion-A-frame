@@ -333,8 +333,14 @@ volumeBar.oninput = function () {
     turnSoundOff = true;
   } else if (sound.volume <= 0.5 && sound.volume >= 0) {
     soundIcon.innerHTML = "volume_down";
+    turnSoundOff = false;
+    isPlaying = true;
+    defaultValue = false;
   } else {
     soundIcon.innerHTML = "volume_up";
+    turnSoundOff = false;
+    isPlaying = true;
+    defaultValue = false;
   }
 };
 
@@ -370,7 +376,7 @@ function updateSound(e) {
     soundIcon.innerHTML = "volume_off";
     isPlaying = false;
   } else if (isPlaying == false && sound.volume == 0 && defaultValue == true && turnSoundOff == false) {
-    sound.volume = 0.5;
+    sound.volume = 0.2;
     volumeBar.value = sound.volume * 100;
     soundIcon.innerHTML = "volume_up";
     isPlaying = true;
@@ -412,7 +418,7 @@ if (video) {
 }
 
 /**
- * Función que permite actualizar el volumen delvideo
+ * Función que permite actualizar el volumen del video
  */
 function updateVideoSound() {
   if (isVideoSoundPlaying == false && video.volume == 0 && videoSoundDefaultValue == false) {
